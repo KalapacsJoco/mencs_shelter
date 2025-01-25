@@ -91,8 +91,8 @@ class ShelterResource extends Resource
     {
         return [
             'index' => Pages\ListShelters::route('/'),
-            'view' => Pages\ViewShelter::route('/{record}'),
             'create' => Pages\CreateShelter::route('/create'),
+            'view' => Pages\ViewShelter::route('/{record}'),
             'edit' => Pages\EditShelter::route('/{record}/edit'),
         ];
     }
