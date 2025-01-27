@@ -116,39 +116,9 @@ class ShelterResource extends Resource
         return [
             'index' => Pages\ListShelters::route('/'),
             'create' => Pages\CreateShelter::route('/create'),
-            'view' => Pages\ViewShelter::route('/{record}'),
+            // 'view' => Pages\ViewShelter::route('/{record}'),
             'edit' => Pages\EditShelter::route('/{record}/edit'),
         ];
     }
-
-
-
-    //     protected function mutateFormDataBeforeCreate(array $data): array
-    // {
-    //     $data['uploaded_images'] = $data['image'] ?? [];
-    //     unset($data['image']);
-    
-    //     return $data;
-    // }
-    
-//     protected function afterCreate(Model $record, array $data): void
-//     {
-//         if (!empty($data['uploaded_images'])) {
-//             foreach ($data['uploaded_images'] as $imagePath) {
-//                 $record->image()->create(['path' => $imagePath]);
-//             }
-//         }
-//     }
-    
-
-// protected function afterSave(Model $record, array $data): void
-// {
-//     if (!empty($data['image'])) {
-//         $record->images()->delete(); 
-//         foreach ($data['image'] as $imagePath) {
-//             $record->images()->create(['path' => $imagePath]);
-//         }
-//     }
-// }
 
 }
