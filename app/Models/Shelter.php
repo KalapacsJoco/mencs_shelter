@@ -8,12 +8,35 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Shelter extends Model
 {
-    protected $fillable = ['name', 'adress', 'phone_number', 'email', 'description'];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+
+    protected $fillable = [
+        'name',
+        'adress',
+        'phone_number',
+        'email',
+        'description'
+    ];
+
+    /**
+     * Every Shelter has many Animals
+     * @return HasMany
+     */
 
     public function animals(): HasMany
     {
         return $this->hasMany(Animal::class);
     }
+
+        /**
+     * Every Shelter has pictures, using polymorph relationship
+     * @return MorphMany
+     */
 
     public function images(): MorphMany
     {

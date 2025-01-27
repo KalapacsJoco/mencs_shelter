@@ -14,11 +14,36 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+
+/**
+ * Manages the "animals" relation within the Shelter resource.
+ * 
+ * This class handles listing, creating, and updating Animal records
+ * that are related to a specific Shelter entry. It also provides
+ * functionalities to delete associated images from storage upon record removal.
+ */
 
 class AnimalsRelationManager extends RelationManager
 {
+
+    /**
+     * The name of the Eloquent relationship on the resource.
+     *
+     * @var string
+     */
+
     protected static string $relationship = 'animals';
+
+    /**
+     * Define the form schema for creating/updating Animal records
+     * within the Shelter resource. Includes fields for basic info,
+     * species, breed, vaccines (repeater), and image uploads.
+     *
+     * @param  Form  $form
+     * @return Form
+     */
 
     public function form(Form $form): Form
     {
@@ -90,7 +115,6 @@ class AnimalsRelationManager extends RelationManager
                     ->schema([
                         TextInput::make('vaccine_name')
                             ->label('Vaccine Name'),
-                        // ->required(),
                         TextInput::make('dose')
                             ->label('Dose')
                             ->numeric()
@@ -120,6 +144,12 @@ class AnimalsRelationManager extends RelationManager
             ]);
     }
 
+    /**
+     * This funcion lists the basic information about the animals, like name, species, age, etc
+     * @param Table $Table
+     * @return Table
+     */
+
     public function table(Table $table): Table
     {
         return $table
@@ -144,7 +174,7 @@ class AnimalsRelationManager extends RelationManager
                      * This method deletes all the resource related data from the database and storage
                      * @param $record contains all the resource data
                      */
-                    ->after(function ($record) {
+                    ->after(function (Model $record): void {
                         $images = $record->images;
                         if ($images) {
                             foreach ($images as $image) {

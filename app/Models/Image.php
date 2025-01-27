@@ -7,7 +7,23 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Image extends Model
 {
-    protected $fillable = ['imageable_id', 'imageable_type', 'path'];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+
+    protected $fillable = [
+        'imageable_id',
+        'imageable_type',
+        'path'
+    ];
+
+    /**
+     * Since multiple models have pictures, polimorphic one to many relations is used
+     * @return MorphTo
+     */
 
     public function imageable(): MorphTo
     {
