@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Animal extends Model
 {
-    protected $fillable = ['name', 'species', 'age', 'color', 'sex', 'status', 'vaccines', 'message', 'shelter_id', 'species_id'];
+    protected $fillable = ['name', 'age', 'color', 'sex', 'status', 'vaccines', 'message', 'shelter_id', 'species_id', 'breed_id'];
 
     protected $casts = [
         'vaccines' => 'array',
@@ -24,6 +24,11 @@ class Animal extends Model
     public function species(): BelongsTo
     {
         return $this->belongsTo(Species::class);
+    }
+
+    public function breed()
+    {
+        return $this->belongsTo(Breed::class);
     }
 
     public function images(): MorphMany

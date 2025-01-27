@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('message')->nullable();
             $table->foreignId('shelter_id')->constrained('shelters')->cascadeOnDelete();
             $table->foreignId('species_id')->constrained('species')->cascadeOnDelete();
+            $table->foreignId('breed_id')->constrained('breeds')->cascadeOnDelete()->nullable();
             $table->timestamps();
         });
     }

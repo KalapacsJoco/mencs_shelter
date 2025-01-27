@@ -8,6 +8,7 @@ use App\Models\Image;
 use App\Models\Shelter;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -17,7 +18,9 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 
 class ShelterResource extends Resource
 {
@@ -37,15 +40,17 @@ class ShelterResource extends Resource
             TextInput::make('email')->required()->unique(),
             Textarea::make('description')->required(),
             
-            FileUpload::make('image')
-                ->label('Shelter Image')
-                ->image()
-                ->disk('public')
-                ->directory('shelters')
-                ->multiple()
-                ->maxParallelUploads(1)
-                ->nullable()
-                ->reactive()
+            Repeater::make('images') 
+            ->label('Images')
+            ->relationship('images') 
+            ->schema([
+                FileUpload::make('path') 
+                    ->label('Upload Image')
+                    ->directory('shelters') 
+                    ->disk('public'),      
+            ])
+            ->minItems(0)
+            ->maxItems(5) 
                 // ->afterStateHydrated(function ($component, $state) {
                 //     if ($state) {
                 //         $name = $component->getForm()->getState()['name'] ?? 'default';
@@ -65,17 +70,36 @@ class ShelterResource extends Resource
                 TextColumn::make('phone_number'),
                 TextColumn::make('email'),
                 TextColumn::make('description')->limit(50),
-                ImageColumn::make('image')
+                ImageColumn::make('images.path')
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                /**
+                 * This method deletes all the resource related data from the database and storage
+                 * @param $record contains all the resource data
+                 */
+                    ->after(function ($record) {
+                        $images = $record->images; 
+                        if ($images) {
+                            foreach ($images as $image) {
+                                if ($image->path && Storage::disk('public')->exists($image->path)) {
+                                    Storage::disk('public')->delete($image->path);
+                                }
+                                $image->delete();
+                            }
+                        }
+                    }),
+                
+            
+                
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+
                 ]),
             ]);
     }
@@ -83,7 +107,7 @@ class ShelterResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\AnimalsRelationManager::class,
         ];
     }
 
@@ -96,4 +120,35 @@ class ShelterResource extends Resource
             'edit' => Pages\EditShelter::route('/{record}/edit'),
         ];
     }
+
+
+
+    //     protected function mutateFormDataBeforeCreate(array $data): array
+    // {
+    //     $data['uploaded_images'] = $data['image'] ?? [];
+    //     unset($data['image']);
+    
+    //     return $data;
+    // }
+    
+//     protected function afterCreate(Model $record, array $data): void
+//     {
+//         if (!empty($data['uploaded_images'])) {
+//             foreach ($data['uploaded_images'] as $imagePath) {
+//                 $record->image()->create(['path' => $imagePath]);
+//             }
+//         }
+//     }
+    
+
+// protected function afterSave(Model $record, array $data): void
+// {
+//     if (!empty($data['image'])) {
+//         $record->images()->delete(); 
+//         foreach ($data['image'] as $imagePath) {
+//             $record->images()->create(['path' => $imagePath]);
+//         }
+//     }
+// }
+
 }

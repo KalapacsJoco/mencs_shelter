@@ -12,17 +12,23 @@ class CreateShelter extends CreateRecord
 {
     protected static string $resource = ShelterResource::class;
 
-    protected function afterCreate(): void // szerintem letezik elegansabb megoldas is
-    {
-        if (isset($this->data['image']) && is_array($this->data['image'])) {
-            foreach ($this->data['image'] as $filePath) {
-                Image::create([
-                    'path' => $filePath, 
-                    'imageable_type' => Shelter::class, 
-                    'imageable_id' => $this->record->id, 
-                ]);
-            }
-        }
-    }
+/**
+ * This method saves the images to the database, because it didnt work automatically
+ * @param $this->data contains the data of the resource
+ */
+
+    // protected function afterCreate(): void 
+    // {
+    //     if (isset($this->data['images']) && is_array($this->data['images'])) {
+    //         // dd($this->data);
+    //         foreach ($this->data['images'] as $filePath) {
+    //             Image::create([
+    //                 'path' => $filePath, 
+    //                 'imageable_type' => Shelter::class, 
+    //                 'imageable_id' => $this->record->id, 
+    //             ]);
+    //         }
+    //     }
+    // }
     
 }

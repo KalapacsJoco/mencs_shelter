@@ -3,24 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Species extends Model
+class Breed extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable =[
+        'name',
+        'species_id'
+    ];
+
+    public function species (): BelongsTo {
+       return $this->belongsTo(Species::class);
+    }
 
     public function animals(): HasMany
     {
         return $this->hasMany(Animal::class);
-    }
-
-    public function breeds(): HasMany
-    {
-        return $this->hasMany(Breed::class);
     }
 }
