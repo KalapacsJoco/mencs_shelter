@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\AnimalResource;
 use App\Filament\Resources\ShelterResource;
 use Filament\Panel;
 use Minic\FilamentStarterKit\Providers\Filament\AdminPanelProvider as MinicAdminPanelProvider;
@@ -23,6 +24,7 @@ class AdminPanelProvider extends MinicAdminPanelProvider
     {
         return [
             ShelterResource::class,
+            AnimalResource::class,
 		// ...
         ];
     }

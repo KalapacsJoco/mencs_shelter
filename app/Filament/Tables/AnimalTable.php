@@ -20,6 +20,7 @@ class AnimalTable
             TextColumn::make('breed.name'),
             TextColumn::make('age'),
             TextColumn::make('status'),
+            TextColumn::make('shelter.name'),
         ];
     }
 }

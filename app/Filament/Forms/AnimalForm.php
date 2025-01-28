@@ -97,7 +97,7 @@ class AnimalForm
                 ])
                 ->required()
                 ->collapsible()
-                ->createItemButtonLabel('Add Vaccine')
+                ->addActionLabel('Add Vaccine')
                 ->columns(2),
 
             Textarea::make('message')
@@ -114,7 +114,7 @@ class AnimalForm
                 ])
                 ->minItems(0)
                 ->maxItems(5)
-                ->createItemButtonLabel('Add Image'),
+                ->addActionLabel('Add Image'),
 
         ];
     }
