@@ -29,7 +29,7 @@ class ListAnimals extends ListRecords
                 //
             ])
             ->actions([
-                ViewAction::make()
+
             ]);
     }
 
