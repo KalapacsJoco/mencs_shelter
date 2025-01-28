@@ -5,7 +5,6 @@ namespace App\Filament\Resources\AnimalResource\Pages;
 use App\Filament\Resources\AnimalResource;
 use App\Filament\Tables\AnimalTable;
 use Filament\Actions;
-use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Table;
 

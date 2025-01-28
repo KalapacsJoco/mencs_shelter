@@ -18,7 +18,7 @@ class EditShelter extends EditRecord
     protected static string $resource = ShelterResource::class;
 
         /**
-     * This form edits the existing record 
+     * This form edits the existing Shelter record 
      * @return Form
      */
 
