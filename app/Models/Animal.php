@@ -8,7 +8,30 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Animal extends Model
 {
-    protected $fillable = ['name', 'age', 'color', 'sex', 'status', 'vaccines', 'message', 'shelter_id', 'species_id', 'breed_id'];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'name',
+        'age',
+        'color',
+        'sex',
+        'status',
+        'vaccines',
+        'message',
+        'shelter_id',
+        'species_id',
+        'breed_id'
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array<string, string>
+     */
 
     protected $casts = [
         'vaccines' => 'array',
@@ -16,20 +39,40 @@ class Animal extends Model
         'status' => 'string',
     ];
 
+    /**
+     * Every Animal belongs to a Shelter
+     * @return BelongsTo
+     */
+
     public function shelter(): BelongsTo
     {
         return $this->belongsTo(Shelter::class);
     }
+
+    /**
+     * Every Animal belongs to a Species
+     * @return BelongsTo
+     */
 
     public function species(): BelongsTo
     {
         return $this->belongsTo(Species::class);
     }
 
+    /**
+     * Every Animal belongs to a Breed
+     * @return BelongsTo
+     */
+
     public function breed()
     {
         return $this->belongsTo(Breed::class);
     }
+
+    /**
+     * Every Animal has pictures, using polymorph relationship
+     * @return MorphMany
+     */
 
     public function images(): MorphMany
     {

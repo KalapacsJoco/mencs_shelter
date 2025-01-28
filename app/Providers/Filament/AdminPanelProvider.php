@@ -11,9 +11,20 @@ class AdminPanelProvider extends MinicAdminPanelProvider
     public function panel(Panel $panel): Panel
     {
         $customPanel = parent::panel($panel);
-        $customPanel->resources([
-            ShelterResource::class, // Ebben nem vagyok biztos, hogy igy kell, de csak igy tudtam behozni
-        ]);
         return $customPanel;
     }
+
+        /**
+     * Register the resources for the admin panel.
+     *
+     * @return array Array of the resources to be registered in the admin panel
+     */
+    public function resources(): array
+    {
+        return [
+            ShelterResource::class,
+		// ...
+        ];
+    }
+
 }
