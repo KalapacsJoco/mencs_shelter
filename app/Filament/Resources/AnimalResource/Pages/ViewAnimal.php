@@ -46,9 +46,6 @@ class ViewAnimal extends ViewRecord
                         $record->getRelationValue('vaccines')->pluck('name')->implode(', ')
                     ),
                 Textentry::make('message'),
-                /**
-                 * Can i make it more elegant?
-                 */
                 TextEntry::make('images')
                     ->label('Images')
                     ->html()
@@ -70,18 +67,12 @@ class ViewAnimal extends ViewRecord
 
             ]);
     }
-    /**
-     * This method redirects to the Animal`s edit page
-     * TODO: find a way to work
-     */
+
     protected function getHeaderActions(): array
     {
         return [
             EditAction::make()
                 ->record($this->getRecord())
-                ->modalHeading('Edit Animal')
-                ->modalWidth('lg')
-                ->slideOver(),
         ];
     }
 }

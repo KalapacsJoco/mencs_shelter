@@ -39,7 +39,7 @@ class AnimalForm
                 ->searchable()
                 ->required(),
 
-            Select::make('breed_id')
+                Select::make('breed_id')
                 ->label('Breed')
                 ->relationship('breed', 'name')
                 ->createOptionForm([
@@ -55,7 +55,8 @@ class AnimalForm
                                 ->required(),
                         ])
                         ->searchable()
-                        ->required(),
+                        ->required()
+                        ->rules(['exists:species,id']), 
                 ])
                 ->searchable()
                 ->required(),

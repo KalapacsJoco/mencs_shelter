@@ -46,7 +46,7 @@ class AnimalsRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-        ->columns(AnimalTable::getColumns())
+            ->columns(AnimalTable::getColumns())
             ->filters([
                 //
             ])

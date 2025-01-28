@@ -65,7 +65,7 @@ class Animal extends Model
      * @return BelongsTo
      */
 
-    public function breed()
+    public function breed(): BelongsTo
     {
         return $this->belongsTo(Breed::class);
     }

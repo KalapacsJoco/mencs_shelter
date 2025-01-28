@@ -8,30 +8,38 @@ use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Table;
 
-/**
- * This Table show all the animals found in the database
- */
-
 class ListAnimals extends ListRecords
 {
+    /**
+     * The resource associated with this page.
+     *
+     * @var string
+     */
     protected static string $resource = AnimalResource::class;
 
     /**
-     * You can find the table logic in the Filament/Tables/AnimalTable.php
+     * Configure the table displayed on this page.
+     *
+     * @param Table $table
+     * @return Table
      */
-
     public function table(Table $table): Table
     {
         return $table
-        ->columns(AnimalTable::getColumns())
+            ->columns(AnimalTable::getColumns()) // Load columns from AnimalTable class
             ->filters([
-                //
+                // Add any table filters here
             ])
             ->actions([
-
+                // Add any table actions here
             ]);
     }
 
+    /**
+     * Define the actions available in the page header.
+     *
+     * @return array
+     */
     protected function getHeaderActions(): array
     {
         return [
