@@ -85,20 +85,18 @@ class AnimalForm
                 ])
                 ->required(),
 
-            Repeater::make('vaccines')
+            Select::make('vaccines')
                 ->label('Vaccines')
-                ->schema([
-                    TextInput::make('vaccine_name')
-                        ->label('Vaccine Name'),
-                    TextInput::make('dose')
-                        ->label('Dose')
-                        ->numeric()
-                        ->nullable(),
+                ->multiple() 
+                ->relationship('vaccines', 'name') 
+                ->preload() 
+                ->searchable() 
+                ->createOptionForm([
+                    TextInput::make('name')
+                        ->label('New Vaccine Name') 
+                        ->required(),
                 ])
-                ->required()
-                ->collapsible()
-                ->addActionLabel('Add Vaccine')
-                ->columns(2),
+                ->required(),
 
             Textarea::make('message')
                 ->required(),
