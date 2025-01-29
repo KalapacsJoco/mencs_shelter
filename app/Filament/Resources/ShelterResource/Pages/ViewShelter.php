@@ -7,7 +7,6 @@ use Filament\Actions;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\ViewRecord;
-use Filament\Tables\Columns\TextColumn;
 
 class ViewShelter extends ViewRecord
 {

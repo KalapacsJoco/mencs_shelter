@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Animal extends Model
@@ -64,10 +65,19 @@ class Animal extends Model
      * @return BelongsTo
      */
 
-    public function breed()
+    public function breed(): BelongsTo
     {
         return $this->belongsTo(Breed::class);
     }
+
+        /**
+     * Many to many relation betveen Vaccine and Animal
+     */
+
+     public function vaccines(): BelongsToMany
+     {
+         return $this->belongsToMany(Vaccine::class, 'animal_vaccine');
+     }
 
     /**
      * Every Animal has pictures, using polymorph relationship
