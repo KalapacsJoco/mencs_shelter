@@ -25,6 +25,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class AnimalForm
 {
+
+    /**
+     * This form fills the Animal`s data
+     */
     public static function getSchema(): array
     {
         return [
@@ -52,7 +56,8 @@ class AnimalForm
                         ->required()
                         ->label('New Breed Name'),
                 ])
-                ->required(),
+                ->required()
+                ->disabled(fn (Get $get) => !$get('species_id')),
 
             TextInput::make('age')
                 ->required()
