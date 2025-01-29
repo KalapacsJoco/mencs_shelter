@@ -2,6 +2,7 @@
 
 namespace App\Filament\Forms;
 
+use App\Models\Breed;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
@@ -9,6 +10,9 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
+use Illuminate\Database\Eloquent\Model;
 
   /**
      * Define the form schema for creating/updating Animal records.
@@ -31,34 +35,23 @@ class AnimalForm
             Select::make('species_id')
                 ->label('Species')
                 ->relationship('species', 'name')
+                ->live()
                 ->createOptionForm([
                     TextInput::make('name')
                         ->label('New Species Name')
                         ->required(),
                 ])
-                ->searchable()
-                ->required(),
-
-                Select::make('breed_id')
+                ->required(),    
+            
+            Select::make('breed_id')
                 ->label('Breed')
                 ->relationship('breed', 'name')
+                ->options(fn (Get $get) => $get('species_id') ? Breed::where('species_id', $get('species_id'))->pluck('name', 'id') : [])
                 ->createOptionForm([
                     TextInput::make('name')
                         ->required()
                         ->label('New Breed Name'),
-                    Select::make('species_id')
-                        ->label('Species')
-                        ->relationship('species', 'name')
-                        ->createOptionForm([
-                            TextInput::make('name')
-                                ->label('New Species Name')
-                                ->required(),
-                        ])
-                        ->searchable()
-                        ->required()
-                        ->rules(['exists:species,id']), 
                 ])
-                ->searchable()
                 ->required(),
 
             TextInput::make('age')

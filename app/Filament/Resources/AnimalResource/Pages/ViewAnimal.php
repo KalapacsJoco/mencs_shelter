@@ -35,16 +35,9 @@ class ViewAnimal extends ViewRecord
                         'fostered' => 'info',
                         default => 'secondary',
                     }),
-
-                /**
-                 * Todo: figure out why not working
-                 */
-                TextEntry::make('vaccines')
-                    ->label('Vaccines:')
-                    ->formatStateUsing(
-                        fn($record) =>
-                        $record->getRelationValue('vaccines')->pluck('name')->implode(', ')
-                    ),
+                TextEntry::make('vaccines.name')
+                    ->listWithLineBreaks()
+                    ->bulleted(),
                 Textentry::make('message'),
                 TextEntry::make('images')
                     ->label('Images')
