@@ -13,6 +13,13 @@ use Filament\Tables\Table;
 
 class ListVets extends ListRecords
 {
+
+    /**
+     * The associated Filament resource for this page.
+     * 
+     * @var string
+     */
+
     protected static string $resource = VetResource::class;
 
     /**
@@ -33,7 +40,7 @@ class ListVets extends ListRecords
             ->actions([
                 ActionsEditAction::make(),
             ])
-            
+
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

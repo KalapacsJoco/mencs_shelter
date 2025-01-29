@@ -14,6 +14,13 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateVet extends CreateRecord
 {
+
+            /**
+     * The associated Filament resource for this page.
+     * 
+     * @var string
+     */
+    
     protected static string $resource = VetResource::class;
 
     /**
@@ -115,7 +122,6 @@ class CreateVet extends CreateRecord
                                     ->required()
                                     ->hidden(fn(callable $get) => $get('schedule_status') !== 'set_time'),
                             ])
-                            ->defaultItems(7)
                             ->columns(3),
                     ])
                     ->columnSpan(1),
