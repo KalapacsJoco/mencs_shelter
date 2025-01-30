@@ -16,9 +16,13 @@ class Hostel extends Model
      */
 
     protected $fillable = [
+        'name',
+        'description',
+        'city',
+        'street',
         'phone_number',
         'email',
-        'shedule'
+        'schedule'
     ];
 
     /**
@@ -28,7 +32,7 @@ class Hostel extends Model
      */
 
     protected $casts = [
-        'shedule' => 'array',
+        'schedule' => 'array',
     ];
 
     /**

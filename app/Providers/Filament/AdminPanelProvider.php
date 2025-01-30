@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Resources\AnimalResource;
+use App\Filament\Resources\HostelResource;
 use App\Filament\Resources\ShelterResource;
 use App\Filament\Resources\VetResource;
 use Filament\Panel;
@@ -27,6 +28,7 @@ class AdminPanelProvider extends MinicAdminPanelProvider
             ShelterResource::class,
             AnimalResource::class,
             VetResource::class,
+            HostelResource::class,
 		// ...
         ];
     }
