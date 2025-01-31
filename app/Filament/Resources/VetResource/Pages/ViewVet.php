@@ -8,10 +8,11 @@ use Filament\Infolists\Components\Grid;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\ViewRecord;
+use Filament\Infolists\Components\ImageEntry;
 
 class ViewVet extends ViewRecord
 {
-        /**
+    /**
      * The associated Filament resource for this page.
      * 
      * @var string
@@ -38,16 +39,7 @@ class ViewVet extends ViewRecord
                 TextEntry::make('services.name')
                     ->listWithLineBreaks()
                     ->bulleted(),
-                TextEntry::make('images')
-                    ->label('Images')
-                    ->html()
-                    ->formatStateUsing(
-                        fn($record) =>
-                        $record->getRelationValue('images')->pluck('path')->map(
-                            fn($url) =>
-                            "<img src='" . asset('storage/' . $url) . "' width='350' style='border-radius: 10px; margin: 5px;'>"
-                        )->implode(' ')
-                    ),
+                ImageEntry::make('images.path'),
 
                 Grid::make()
                     ->columns(3)
