@@ -8,11 +8,9 @@ use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 
 class ListHostels extends ListRecords
@@ -43,10 +41,11 @@ class ListHostels extends ListRecords
             ->filters([
                 SelectFilter::make('city')
                     ->label('City')
-                    ->options(fn () => Hostel::query()
-                        ->distinct()
-                        ->pluck('city', 'city')
-                        ->toArray()
+                    ->options(
+                        fn() => Hostel::query()
+                            ->distinct()
+                            ->pluck('city', 'city')
+                            ->toArray()
                     )
             ])
             ->actions([

@@ -5,6 +5,7 @@ namespace App\Filament\Resources\HostelResource\Pages;
 use App\Filament\Resources\HostelResource;
 use Illuminate\Support\Facades\Storage;
 use Filament\Actions;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
@@ -24,9 +25,6 @@ class ViewHostel extends ViewRecord
 
     /**
      * Renders the View page of the selected hostel.
-     * 
-     * @param Infolist $infolist
-     * @return Infolist
      */
 
     public function infolist(Infolist $infolist): Infolist
@@ -41,19 +39,13 @@ class ViewHostel extends ViewRecord
                 TextEntry::make('services.name')
                     ->listWithLineBreaks()
                     ->bulleted(),
-                TextEntry::make('images')
-                    ->label('Images')
-                    ->html()
-                    ->formatStateUsing(
-                        fn($record) =>
-                        $record->getRelationValue('images')->pluck('path')->map(
-                            fn($url) =>
-                            "<img src='" . asset('storage/' . $url) . "' width='350' style='border-radius: 10px; margin: 5px;'>"
-                        )->implode(' ')
-                    ),
+
+                ImageEntry::make('images.path')
+                    ->size(250),
+
                 RepeatableEntry::make('schedule')
                     ->schema([
-                        TextEntry::make('day_of_week')->label('')->formatStateUsing(fn ($state) => ucfirst($state)),
+                        TextEntry::make('day_of_week')->label('')->formatStateUsing(fn($state) => ucfirst($state)),
                         TextEntry::make('start_time')->label(''),
                         TextEntry::make('end_time')->label(''),
                     ])
@@ -75,24 +67,24 @@ class ViewHostel extends ViewRecord
         return [
             Actions\EditAction::make()->label('Edit hostel'),
             Actions\DeleteAction::make()->label('Delete hostel')
-                                      
-                    /**
-                      * This method deletes all the resource related data from the database and storage
-                      * @param $record contains all the resource data
-                      * @return void
-                      */
 
-                      ->after(function (Model $record): void {
-                        $images = $record->images;
-                        if ($images) {
-                            foreach ($images as $image) {
-                                if ($image->path && Storage::disk('public')->exists($image->path)) {
-                                    Storage::disk('public')->delete($image->path);
-                                }
-                                $image->delete();
+                /**
+                 * This method deletes all the resource related data from the database and storage
+                 * @param $record contains all the resource data
+                 * @return void
+                 */
+
+                ->after(function (Model $record): void {
+                    $images = $record->images;
+                    if ($images) {
+                        foreach ($images as $image) {
+                            if ($image->path && Storage::disk('public')->exists($image->path)) {
+                                Storage::disk('public')->delete($image->path);
                             }
+                            $image->delete();
                         }
-                    }),
+                    }
+                }),
         ];
     }
 }
