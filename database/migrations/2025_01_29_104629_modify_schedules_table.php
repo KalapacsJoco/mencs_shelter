@@ -23,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('schedules', function (Blueprint $table) {
-            //
+            $table->time('start_time')->nullable(false)->change();
+            $table->time('end_time')->nullable(false)->change();
         });
     }
 };
