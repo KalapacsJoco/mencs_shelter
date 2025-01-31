@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\HostelResource\Pages;
 
 use App\Filament\Resources\HostelResource;
+use App\Models\Hostel;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Actions\BulkActionGroup;
@@ -10,6 +11,9 @@ use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 
 class ListHostels extends ListRecords
 {
@@ -22,29 +26,38 @@ class ListHostels extends ListRecords
 
     protected static string $resource = HostelResource::class;
 
-        /**
+    /**
      * This table shows the basic data of all the hostels
      */
 
-     public function table(Table $table): Table
-     {
-         return $table
-             ->columns([
+    public function table(Table $table): Table
+    {
+        return $table
+            ->columns([
                 TextColumn::make('name')->searchable(),
                 TextColumn::make('city')->searchable(),
                 TextColumn::make('street'),
                 TextColumn::make('email'),
                 TextColumn::make('phone_number'),
-             ])
-             ->actions([
-                 EditAction::make(),
-             ])
-             ->bulkActions([
-                 BulkActionGroup::make([
+            ])
+            ->filters([
+                SelectFilter::make('city')
+                    ->label('City')
+                    ->options(fn () => Hostel::query()
+                        ->distinct()
+                        ->pluck('city', 'city')
+                        ->toArray()
+                    )
+            ])
+            ->actions([
+                ViewAction::make(),
+            ])
+            ->bulkActions([
+                BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                 ]),
-             ]);
-     }
+                ]),
+            ]);
+    }
 
     /**
      * This function allows the header actions of the Hostels

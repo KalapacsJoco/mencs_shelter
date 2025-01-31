@@ -101,7 +101,7 @@ class EditHostel extends EditRecord
                              ->maxItems(5)
                              ->addActionLabel('Add Image'),
                      ])
-                     ->columnSpan(1),
+                     ->columnSpan(1),          
              ]);
      }
 

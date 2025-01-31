@@ -57,7 +57,10 @@ class ViewHostel extends ViewRecord
                         TextEntry::make('start_time')->label(''),
                         TextEntry::make('end_time')->label(''),
                     ])
-                    ->columns(3)
+                    ->columns([
+                        'md' => '3',
+                        's' => '1'
+                    ])
                     ->columnSpan(1),
             ]);
     }
