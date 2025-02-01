@@ -3,12 +3,19 @@
 namespace App\Filament\Resources\HostelResource\Pages;
 
 use App\Filament\Forms\HostelForm;
+use App\Filament\Resources\Concerns\ProcessFiles;
 use App\Filament\Resources\HostelResource;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateHostel extends CreateRecord
 {
+
+    /**
+     * This trait contains the logic of saving and deleting the images after the form is saved or Delete button pressed
+     */
+
+    use ProcessFiles;
 
     /**
      * The associated Filament resource for this page.
@@ -26,4 +33,14 @@ class CreateHostel extends CreateRecord
     {
         return $form->schema(HostelForm::getSchema());
     }
+
+    /**
+     * This method uses the ProcessFiles trait to save the images after the form being saved
+     */
+
+    protected function afterCreate(): void
+    {
+        $this->processFiles(); 
+    }
+
 }

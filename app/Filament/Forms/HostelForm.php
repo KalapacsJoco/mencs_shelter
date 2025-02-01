@@ -9,6 +9,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 /**
  * Define the form schema for creating/updating Hostel records.
@@ -79,16 +80,21 @@ class HostelForm
                 ])
                 ->columnSpan(1),
 
-            Section::make('Upload Photos')
-                ->schema([
-                    FileUpload::make('path')
-                        ->label('Upload Image')
-                        ->directory('vets')
-                        ->multiple()
-                        ->disk('public'),
-                ])
-                ->columnSpan(1),
-
+            FileUpload::make('images')
+            ->multiple()
+            ->disk('public')
+            ->directory('hostels')
+            ->image()
+            ->afterStateHydrated(function (callable $set, $state, $record) {
+                if ($record) {
+                    $set('images', $record->images->pluck('path')->toArray());
+                }
+            })
+            ->getUploadedFileNameForStorageUsing(
+                fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                    ->prepend(rand(1, 1000)),
+            )
+            ->columnSpan(1)
         ];
     }
 }

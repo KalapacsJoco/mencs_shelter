@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\HostelResource\Pages;
 
+use App\Filament\Resources\Concerns\ProcessFiles;
 use App\Filament\Resources\HostelResource;
 use App\Models\Hostel;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -15,6 +15,7 @@ use Filament\Tables\Filters\SelectFilter;
 
 class ListHostels extends ListRecords
 {
+    use ProcessFiles;
 
     /**
      * The associated Filament resource for this page.
@@ -52,9 +53,10 @@ class ListHostels extends ListRecords
                 ViewAction::make(),
             ])
             ->bulkActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                DeleteBulkAction::make()
+                    ->after(function (iterable $records): void {
+                        ProcessFiles::bulkDeleteFiles($records);
+                    }),
             ]);
     }
 

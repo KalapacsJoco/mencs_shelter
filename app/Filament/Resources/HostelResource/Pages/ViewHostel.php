@@ -2,18 +2,18 @@
 
 namespace App\Filament\Resources\HostelResource\Pages;
 
+use App\Filament\Resources\Concerns\ProcessFiles;
 use App\Filament\Resources\HostelResource;
-use Illuminate\Support\Facades\Storage;
 use Filament\Actions;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\ViewRecord;
-use Illuminate\Database\Eloquent\Model;
 
 class ViewHostel extends ViewRecord
 {
+    use ProcessFiles;
 
     /**
      * The associated Filament resource for this page.
@@ -36,7 +36,7 @@ class ViewHostel extends ViewRecord
                 TextEntry::make('phone_number')->label('Phone number:'),
                 TextEntry::make('city')->label('City:'),
                 TextEntry::make('street')->label('Street:'),
-                TextEntry::make('services.name')
+                TextEntry::make('tags.name')
                     ->listWithLineBreaks()
                     ->bulleted(),
 
@@ -74,16 +74,8 @@ class ViewHostel extends ViewRecord
                  * @return void
                  */
 
-                ->after(function (Model $record): void {
-                    $images = $record->images;
-                    if ($images) {
-                        foreach ($images as $image) {
-                            if ($image->path && Storage::disk('public')->exists($image->path)) {
-                                Storage::disk('public')->delete($image->path);
-                            }
-                            $image->delete();
-                        }
-                    }
+                ->after(function (): void {
+                    $this->processFiles();
                 }),
         ];
     }
