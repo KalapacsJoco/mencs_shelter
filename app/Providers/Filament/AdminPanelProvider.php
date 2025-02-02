@@ -14,7 +14,9 @@ class AdminPanelProvider extends MinicAdminPanelProvider
     public function panel(Panel $panel): Panel
     {
         $customPanel = parent::panel($panel);
-        return $customPanel;
+        return $customPanel
+            ->sidebarCollapsibleOnDesktop()
+            ->brandLogo(asset('storage/logo/logo.png'));
     }
 
         /**

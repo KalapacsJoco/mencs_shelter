@@ -5,9 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\HostelResource\Pages;
 use App\Models\Hostel;
 
-use Filament\Resources\Resource;
-
-class HostelResource extends Resource
+class HostelResource extends ResourcesWithNavigationBadge
 {
 
     /**

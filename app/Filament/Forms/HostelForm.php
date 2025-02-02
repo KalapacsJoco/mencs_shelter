@@ -27,7 +27,7 @@ class HostelForm
     public static function getSchema(): array
     {
         return [
-            Section::make('Hostel basics')
+            Section::make()
                 ->schema([
                     TextInput::make('name'),
                     Textinput::make('email'),
@@ -44,11 +44,31 @@ class HostelForm
                             TextInput::make('name')
                                 ->label('New Tag Name')
                                 ->required(),
+                        ]),
+                    Section::make('Images')
+                        ->schema([
+                            FileUpload::make('images')
+                                ->label('')
+                                ->multiple()
+                                ->disk('public')
+                                ->directory('hostels')
+                                ->image()
+                                ->afterStateHydrated(function (callable $set, $state, $record) {
+                                    if ($record) {
+                                        $set('images', $record->images->pluck('path')->toArray());
+                                    }
+                                })
+                                ->getUploadedFileNameForStorageUsing(
+                                    fn(TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                                        ->prepend(rand(1, 1000)),
+                                )
                         ])
+                        ->collapsible()
+
                 ])
                 ->columnSpan(1),
 
-            Section::make('Schedule')
+            Section::make()
                 ->schema([
                     Repeater::make('schedule')
                         ->schema([
@@ -80,21 +100,6 @@ class HostelForm
                 ])
                 ->columnSpan(1),
 
-            FileUpload::make('images')
-            ->multiple()
-            ->disk('public')
-            ->directory('hostels')
-            ->image()
-            ->afterStateHydrated(function (callable $set, $state, $record) {
-                if ($record) {
-                    $set('images', $record->images->pluck('path')->toArray());
-                }
-            })
-            ->getUploadedFileNameForStorageUsing(
-                fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
-                    ->prepend(rand(1, 1000)),
-            )
-            ->columnSpan(1)
         ];
     }
 }

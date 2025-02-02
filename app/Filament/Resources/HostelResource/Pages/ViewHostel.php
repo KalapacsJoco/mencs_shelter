@@ -69,8 +69,7 @@ class ViewHostel extends ViewRecord
             Actions\DeleteAction::make()->label('Delete hostel')
 
                 /**
-                 * This method deletes all the resource related data from the database and storage
-                 * @param $record contains all the resource data
+                 * This method calls a trait, that deletes all the files from the storage and database
                  * @return void
                  */
 
