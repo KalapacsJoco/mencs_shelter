@@ -55,7 +55,7 @@ class EditHostel extends EditRecord
                  */
 
                  ->after(function () {
-                    ProcessFiles::deleteFile($this->record);
+                    ProcessFiles::deleteFile();
                 }),
                 
         ];

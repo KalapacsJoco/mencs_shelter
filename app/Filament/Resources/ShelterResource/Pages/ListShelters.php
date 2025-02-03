@@ -45,8 +45,8 @@ class ListShelters extends ListRecords
                      * This method deletes all the resource related data from the database and storage
                      * @param $record contains all the resource data
                      */
-                    ->after(function ($record) {
-                        ProcessFiles::deleteFile($record);
+                    ->after(function () {
+                        ProcessFiles::deleteFile();
                     }),
             ])
             ->bulkActions([

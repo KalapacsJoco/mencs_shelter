@@ -74,7 +74,7 @@ class ViewHostel extends ViewRecord
                  */
 
                  ->after(function () {
-                    ProcessFiles::deleteFile($this->record);
+                    ProcessFiles::deleteFile();
                 }),
         ];
     }
