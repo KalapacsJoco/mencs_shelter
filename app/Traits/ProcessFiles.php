@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Filament\Resources\Concerns;
+namespace App\Traits;
 
 use Illuminate\Support\Facades\Storage;
 
 trait ProcessFiles
 {
     /**
-     * Synchronize the file uploads from the form state with the record's images. Also it can be used on delete buttons
+     * Synchronize the file uploads from the form state with the record's images.
      *
      * This method will:
      * - Delete images (and their files) that were removed from the form.
@@ -33,6 +33,21 @@ trait ProcessFiles
             $this->record->images()->create([
                 'path' => $imagePath,
             ]);
+        }
+    }
+
+    /**
+     * This functiom deletes a single file using the DeleteAction 
+     */
+
+    public static function deleteFile($record)
+    {
+        $images= $record['images'];
+        foreach ($images as $image) {
+            if ($image->path && Storage::disk('public')->exists($image->path)) {
+                Storage::disk('public')->delete($image->path);
+            }
+            $image->delete();
         }
     }
 

@@ -17,7 +17,8 @@ class Shelter extends Model
 
     protected $fillable = [
         'name',
-        'adress',
+        'city',
+        'street',
         'phone_number',
         'email',
         'description'

@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\HostelResource\Pages;
 
-use App\Filament\Resources\Concerns\ProcessFiles;
+use App\Traits\ProcessFiles;
 use App\Filament\Resources\HostelResource;
 use Filament\Actions;
 use Filament\Infolists\Components\ImageEntry;
@@ -73,8 +73,8 @@ class ViewHostel extends ViewRecord
                  * @return void
                  */
 
-                ->after(function (): void {
-                    $this->processFiles();
+                 ->after(function () {
+                    ProcessFiles::deleteFile($this->record);
                 }),
         ];
     }

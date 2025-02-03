@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\HostelResource\Pages;
 
 use App\Filament\Forms\HostelForm;
-use App\Filament\Resources\Concerns\ProcessFiles;
+use App\Traits\ProcessFiles;
 use App\Filament\Resources\HostelResource;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\CreateRecord;
