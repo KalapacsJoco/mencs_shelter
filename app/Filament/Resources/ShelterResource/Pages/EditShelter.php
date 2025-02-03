@@ -43,7 +43,7 @@ class EditShelter extends EditRecord
              * @param $record contains all the resource data
              */
             ->after(function () {
-                ProcessFiles::deleteFile($this->record);
+                ProcessFiles::deleteFile();
             }),
         ];
     }

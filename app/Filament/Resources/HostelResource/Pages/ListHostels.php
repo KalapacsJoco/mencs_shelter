@@ -54,8 +54,8 @@ class ListHostels extends ListRecords
             ])
             ->bulkActions([
                 DeleteBulkAction::make()
-                    ->after(function (iterable $records): void {
-                        ProcessFiles::bulkDeleteFiles($records);
+                    ->after(function (): void {
+                        ProcessFiles::bulkDeleteFiles();
                     }),
             ]);
     }
