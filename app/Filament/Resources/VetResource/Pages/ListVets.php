@@ -6,7 +6,6 @@ use App\Filament\Resources\VetResource;
 use App\Traits\ProcessFiles;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction as ActionsEditAction;
 use Filament\Tables\Columns\TextColumn;
@@ -45,8 +44,12 @@ class ListVets extends ListRecords
 
             ->bulkActions([
                 DeleteBulkAction::make()
-                    ->after(function (iterable $records): void {
-                        ProcessFiles::bulkDeleteFiles($records);
+                    /**
+                     * This function uses a treat witch deletes all the images from database an storage
+                     */
+
+                     ->after(function (): void {
+                        $this->bulkDeleteFiles();
                     }),
             ]);
     }

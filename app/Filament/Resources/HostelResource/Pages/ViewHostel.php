@@ -69,12 +69,13 @@ class ViewHostel extends ViewRecord
             Actions\DeleteAction::make()->label('Delete hostel')
 
                 /**
-                 * This method calls a trait, that deletes all the files from the storage and database
+                 * This method uses the ProcessFiles trait to delete all the resource related data from the database and storage
+                 * @param $record contains all the resource data
                  * @return void
                  */
 
                  ->after(function () {
-                    ProcessFiles::deleteFile();
+                    $this->deleteFile();
                 }),
         ];
     }
