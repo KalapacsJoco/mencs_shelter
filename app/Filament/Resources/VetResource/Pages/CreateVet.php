@@ -4,11 +4,13 @@ namespace App\Filament\Resources\VetResource\Pages;
 
 use App\Filament\Forms\VetForm;
 use App\Filament\Resources\VetResource;
+use App\Traits\ProcessFiles;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateVet extends CreateRecord
 {
+    use ProcessFiles;
 
     /**
      * The associated Filament resource for this page.
@@ -25,5 +27,14 @@ class CreateVet extends CreateRecord
     public function form(Form $form): Form
     {
         return $form->schema(VetForm::getSchema());
+    }
+
+    /**
+     * This method uses the ProcessFiles trait to save the images after the form being saved
+     */
+
+    protected function afterCreate(): void
+    {
+        $this->processFiles();
     }
 }

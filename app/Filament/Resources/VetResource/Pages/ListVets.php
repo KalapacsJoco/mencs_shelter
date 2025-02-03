@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\VetResource\Pages;
 
 use App\Filament\Resources\VetResource;
+use App\Traits\ProcessFiles;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Actions\BulkActionGroup;
@@ -13,6 +14,7 @@ use Filament\Tables\Table;
 
 class ListVets extends ListRecords
 {
+    use ProcessFiles;
 
     /**
      * The associated Filament resource for this page.
@@ -42,9 +44,10 @@ class ListVets extends ListRecords
             ])
 
             ->bulkActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                DeleteBulkAction::make()
+                    ->after(function (iterable $records): void {
+                        ProcessFiles::bulkDeleteFiles($records);
+                    }),
             ]);
     }
 

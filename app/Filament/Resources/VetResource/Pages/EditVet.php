@@ -4,15 +4,14 @@ namespace App\Filament\Resources\VetResource\Pages;
 
 use App\Filament\Forms\VetForm;
 use App\Filament\Resources\VetResource;
+use App\Traits\ProcessFiles;
 use Filament\Actions;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\EditRecord;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
-
 
 class EditVet extends EditRecord
 {
+    use ProcessFiles;
 
     /**
      * The associated Filament resource for this page.
@@ -32,6 +31,15 @@ class EditVet extends EditRecord
     }
 
     /**
+     * This method will update or delete the files using the ProcessFiles trait
+     */
+
+    protected function afterSave(): void
+    {
+        $this->processFiles();
+    }
+
+    /**
      * This function allows to delete the current Vet
      */
 
@@ -39,23 +47,14 @@ class EditVet extends EditRecord
     {
         return [
             Actions\DeleteAction::make()
-
                 /**
-                 * This method deletes all the resource related data from the database and storage
+                 * This method uses the ProcessFiles trait to delete all the resource related data from the database and storage
                  * @param $record contains all the resource data
                  * @return void
                  */
 
-                ->after(function (Model $record): void {
-                    $images = $record->images;
-                    if ($images) {
-                        foreach ($images as $image) {
-                            if ($image->path && Storage::disk('public')->exists($image->path)) {
-                                Storage::disk('public')->delete($image->path);
-                            }
-                            $image->delete();
-                        }
-                    }
+                ->after(function () {
+                    ProcessFiles::deleteFile($this->record);
                 }),
         ];
     }
