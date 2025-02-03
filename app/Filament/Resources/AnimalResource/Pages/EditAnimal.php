@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\VetResource\Pages;
+namespace App\Filament\Resources\AnimalResource\Pages;
 
-use App\Filament\Forms\VetForm;
-use App\Filament\Resources\VetResource;
+use App\Filament\Forms\AnimalForm;
 use App\Traits\ProcessFiles;
+use App\Filament\Resources\AnimalResource;
 use Filament\Actions;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\EditRecord;
 
-class EditVet extends EditRecord
+class EditAnimal extends EditRecord
 {
+
     use ProcessFiles;
 
     /**
@@ -19,15 +20,15 @@ class EditVet extends EditRecord
      * @var string
      */
 
-    protected static string $resource = VetResource::class;
+    protected static string $resource = AnimalResource::class;
 
     /**
-     * You can find the form logic in the Filament/Forms/VetForm.php
+     * You can find the form logic in the Filament/Forms/AnimalForm.php
      */
 
     public function form(Form $form): Form
     {
-        return $form->schema(VetForm::getSchema());
+        return $form->schema(AnimalForm::getSchema());
     }
 
     /**
@@ -40,7 +41,7 @@ class EditVet extends EditRecord
     }
 
     /**
-     * This function allows to delete the current Vet
+     * This function provides to delete the current Animal
      */
 
     protected function getHeaderActions(): array
@@ -56,6 +57,7 @@ class EditVet extends EditRecord
                 ->after(function () {
                     ProcessFiles::deleteFile($this->record);
                 }),
+
         ];
     }
 }

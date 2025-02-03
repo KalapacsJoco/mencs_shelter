@@ -4,12 +4,19 @@ namespace App\Filament\Resources\AnimalResource\Pages;
 
 use App\Filament\Resources\AnimalResource;
 use App\Filament\Tables\AnimalTable;
-use Filament\Actions;
+use App\Traits\ProcessFiles;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Table;
+use Filament\Tables\Actions\ViewAction;
+
 
 class ListAnimals extends ListRecords
 {
+
+    use ProcessFiles;
+
     /**
      * The resource associated with this page.
      *
@@ -26,24 +33,22 @@ class ListAnimals extends ListRecords
     public function table(Table $table): Table
     {
         return $table
-            ->columns(AnimalTable::getColumns()) // Load columns from AnimalTable class
-            ->filters([
-                // Add any table filters here
-            ])
-            ->actions([
-                // Add any table actions here
-            ]);
-    }
+            ->columns(AnimalTable::getColumns()) 
 
-    /**
-     * Define the actions available in the page header.
-     *
-     * @return array
-     */
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\CreateAction::make(),
-        ];
+            ->actions([
+                ViewAction::make(),
+                EditAction::make(),
+            ])
+            ->bulkActions([
+                DeleteBulkAction::make()
+
+                    /**
+                     * This function uses a treat witch deletes all the images from database an storage
+                     */
+
+                    ->after(function (iterable $records): void {
+                        ProcessFiles::bulkDeleteFiles($records);
+                    }),
+            ]);
     }
 }

@@ -1,15 +1,20 @@
 <?php
 
-namespace App\Filament\Resources\VetResource\Pages;
+namespace App\Filament\Resources\AnimalResource\Pages;
 
-use App\Filament\Forms\VetForm;
-use App\Filament\Resources\VetResource;
+use App\Filament\Forms\AnimalForm;
 use App\Traits\ProcessFiles;
+use App\Filament\Resources\AnimalResource;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateVet extends CreateRecord
+class CreateAnimal extends CreateRecord
 {
+
+    /**
+     * This trait contains the logic of saving and deleting the images after the form is saved or Delete button pressed
+     */
+
     use ProcessFiles;
 
     /**
@@ -18,15 +23,15 @@ class CreateVet extends CreateRecord
      * @var string
      */
 
-    protected static string $resource = VetResource::class;
+    protected static string $resource = AnimalResource::class;
 
     /**
-     * You can find the form logic in the Filament/Forms/VetForm.php
+     * You can find the form logic in the Filament/Forms/AnimalForm.php
      */
 
     public function form(Form $form): Form
     {
-        return $form->schema(VetForm::getSchema());
+        return $form->schema(AnimalForm::getSchema());
     }
 
     /**

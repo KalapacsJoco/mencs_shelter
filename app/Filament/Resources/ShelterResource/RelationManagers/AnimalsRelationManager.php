@@ -3,13 +3,13 @@
 namespace App\Filament\Resources\ShelterResource\RelationManagers;
 
 use App\Filament\Forms\AnimalForm;
+use App\Filament\Resources\AnimalResource\Pages\CreateAnimal;
+use App\Filament\Resources\AnimalResource\Pages\EditAnimal;
 use App\Filament\Tables\AnimalTable;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * Manages the "animals" relation within the Shelter resource.
@@ -36,7 +36,7 @@ class AnimalsRelationManager extends RelationManager
 
     public function form(Form $form): Form
     {
-         return $form->schema(AnimalForm::getSchema());
+        return $form->schema(AnimalForm::getSchema());
     }
 
     /**
@@ -47,30 +47,14 @@ class AnimalsRelationManager extends RelationManager
     {
         return $table
             ->columns(AnimalTable::getColumns())
-            ->filters([
-                //
+
+            ->actions([
+                Tables\Actions\EditAction::make()->url(fn($record) => EditAnimal::getUrl(['record' => $record])),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
-                    /**
-                     * This method deletes all the resource related data from the database and storage
-                     * @param $record contains all the resource data
-                     */
-                    ->after(function (Model $record): void {
-                        $images = $record->images;
-                        if ($images) {
-                            foreach ($images as $image) {
-                                if ($image->path && Storage::disk('public')->exists($image->path)) {
-                                    Storage::disk('public')->delete($image->path);
-                                }
-                                $image->delete();
-                            }
-                        }
-                    }),
+                Tables\Actions\CreateAction::make()
+                    ->url(fn() => CreateAnimal::getUrl(['shelter' => $this->ownerRecord->id])),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -1,14 +1,15 @@
 <?php
+
 namespace App\Filament\Tables;
 
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-  /**
-     * This funcion lists the basic information about the animals, like name, species, age, etc
-     * @param Table $Table
-     * @return Table
-     */
+/**
+ * This funcion lists the basic information about the animals, like name, species, age, etc
+ * @param Table $Table
+ * @return Table
+ */
 
 class AnimalTable
 {
@@ -16,8 +17,10 @@ class AnimalTable
     {
         return [
             TextColumn::make('name'),
-            TextColumn::make('species.name'),
-            TextColumn::make('breed.name'),
+            TextColumn::make('species.name')
+                ->searchable(),
+            TextColumn::make('breed.name')
+                ->searchable(),
             TextColumn::make('age'),
             TextColumn::make('status'),
             TextColumn::make('shelter.name'),
