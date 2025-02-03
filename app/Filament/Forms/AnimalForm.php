@@ -11,8 +11,6 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
-use Filament\Forms\Set;
-use Illuminate\Database\Eloquent\Model;
 
   /**
      * Define the form schema for creating/updating Animal records.

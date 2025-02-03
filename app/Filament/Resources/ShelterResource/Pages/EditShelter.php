@@ -2,19 +2,17 @@
 
 namespace App\Filament\Resources\ShelterResource\Pages;
 
+use App\Filament\Forms\ShelterForm;
 use App\Filament\Resources\ShelterResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
-use Illuminate\Support\Facades\Storage;
+use App\Traits\ProcessFiles;
 use Filament\Forms\Form;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
-
 
 class EditShelter extends EditRecord
 {
+    use ProcessFiles;
+
     protected static string $resource = ShelterResource::class;
 
         /**
@@ -24,26 +22,16 @@ class EditShelter extends EditRecord
 
      public function form(Form $form): Form
      {
-         return $form
-             ->schema([
-                 TextInput::make('name')->required(),
-                 TextInput::make('adress')->required(),
-                 TextInput::make('phone_number')->required(),
-                 TextInput::make('email')->required()->unique(),
-                 Textarea::make('description')->required(),
- 
-                 Repeater::make('images')
-                     ->label('Images')
-                     ->relationship('images')
-                     ->schema([
-                         FileUpload::make('path')
-                             ->label('Upload Image')
-                             ->directory('shelters')
-                             ->disk('public'),
-                     ])
-                     ->minItems(0)
-                     ->maxItems(5)
-             ]);
+         return $form->schema(ShelterForm::getSchema());
+     }
+
+     /**
+      * This function deletes the images selected by the user from the database and storage
+      */
+
+     protected function afterSave(): void
+     {
+         $this->processFiles();
      }
 
     protected function getHeaderActions(): array
@@ -54,17 +42,9 @@ class EditShelter extends EditRecord
              * This method deletes all the resource related data from the database and storage
              * @param $record contains all the resource data
              */
-                ->after(function ($record) {
-                    $images = $record->images; 
-                    if ($images) {
-                        foreach ($images as $image) {
-                            if ($image->path && Storage::disk('public')->exists($image->path)) {
-                                Storage::disk('public')->delete($image->path);
-                            }
-                            $image->delete();
-                        }
-                    }
-                }),
+            ->after(function () {
+                ProcessFiles::deleteFile();
+            }),
         ];
     }
 

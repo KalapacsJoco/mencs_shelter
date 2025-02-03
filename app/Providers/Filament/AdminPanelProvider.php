@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Resources\AnimalResource;
+use App\Filament\Resources\HostelResource;
 use App\Filament\Resources\ShelterResource;
 use App\Filament\Resources\VetResource;
 use Filament\Panel;
@@ -13,7 +14,9 @@ class AdminPanelProvider extends MinicAdminPanelProvider
     public function panel(Panel $panel): Panel
     {
         $customPanel = parent::panel($panel);
-        return $customPanel;
+        return $customPanel
+            ->sidebarCollapsibleOnDesktop()
+            ->brandLogo(asset('storage/logo/logo.png'));
     }
 
         /**
@@ -27,6 +30,7 @@ class AdminPanelProvider extends MinicAdminPanelProvider
             ShelterResource::class,
             AnimalResource::class,
             VetResource::class,
+            HostelResource::class,
 		// ...
         ];
     }
