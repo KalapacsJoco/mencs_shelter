@@ -41,14 +41,14 @@ class ViewAnimal extends ViewRecord
                 Textentry::make('message'),
                 TextEntry::make('images')
                     ->label('Images')
-                    ->html()
-                    ->formatStateUsing(
-                        fn($record) =>
-                        $record->getRelationValue('images')->pluck('path')->map(
-                            fn($url) =>
-                            "<img src='" . asset('storage/' . $url) . "' width='350' style='border-radius: 10px; margin: 5px;'>"
-                        )->implode(' ')
-                    ),
+                    ->html(),
+                    // ->formatStateUsing(
+                    //     fn($record) =>
+                    //     $record->getRelationValue('images')->pluck('path')->map(
+                    //         fn($url) =>
+                    //         "<img src='" . asset('storage/' . $url) . "' width='350' style='border-radius: 10px; margin: 5px;'>"
+                    //     )->implode(' ')
+                    // ),
 
                 Section::make('Shelter')
                     ->schema([

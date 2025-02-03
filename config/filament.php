@@ -57,10 +57,6 @@ return [
 
     'assets_path' => null,
 
-    'assets' => [
-        asset('css/custom-filament.css'),
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Cache Path
