@@ -9,13 +9,14 @@
             <h3 class="text-md">
                 Adopt a pet, don’t buy one, and join our cause!
             </h3>
-            <a href="#">
+            <a href="#" class="">
                 <x-secondary-button>Adoption</x-secondary-button>
             </a>
         </section>
+        <x-paws-image/>
     </header>
 
-    <header
+    <div
         class="hidden md:flex flex-col items-center space-y-4 bg-cover bg-center bg-no-repeat w-full min-h-screen relative transition-all duration-1000 ease-in-out"
         x-data="headerComponent" x-init="setInterval(() => changeBackground(), 5000)"
         :style="'background-image: url(' + backgrounds[activeIndex] + ');'">
@@ -41,7 +42,7 @@
             </template>
         </div>
 
-    </header>
+    </div>
 
     <script>
         function headerComponent() {

@@ -12,7 +12,6 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                // sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 comfortaa: ['Comfortaa', 'cursive'],
             },
             colors: {
