@@ -12,7 +12,8 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                // sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                comfortaa: ['Comfortaa', 'cursive'],
             },
             colors: {
                 btnprimary: {
@@ -24,6 +25,10 @@ export default {
                     DEFAULT: 'rgba(255, 250, 250, 1)',
                     hover: 'rgba(242, 221, 193, 0.3)',
                     pressed: 'rgba(255, 250, 250, 1)'
+                },
+                background: {
+                    DEFAULT: 'rgba(242, 221, 193, 0.3)',
+                    base: 'rgba(255, 250, 250, 1)',
                 }
             }
         },
