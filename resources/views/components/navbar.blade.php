@@ -23,8 +23,7 @@
                     </select>
                 </div>
             </span>
-            <button class="flex  items-center text-lg font-semibold p-2 rounded"
-                x-on:click="open = !open">
+            <button class="flex  items-center text-lg font-semibold p-2 rounded" x-on:click="open = !open">
                 <div class="flex items-center space-x-2">
                     <span x-show="!open">
                         <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,49 +48,49 @@
             <ul class="mt-4 space-y-4 bg-background-noopacity md:fixed w-screen h-screen ">
                 <li class="flex items-center  md:justify-end mr-12">
                     <span>
-                        <x-swg.paws-swg/>
+                        <x-swg.paws-swg />
                     </span>
                     <a href="#">Adoption</a>
                 </li>
                 <li class="flex items-center md:justify-end mr-12">
                     <span>
-                        <x-swg.exclamationmark-swg/>
+                        <x-swg.exclamationmark-swg />
                     </span>
                     <a href="#">Lost animals</a>
                 </li>
                 <li class="flex items-center md:justify-end mr-12">
                     <span>
-                        <x-swg.house-swg/>
+                        <x-swg.house-swg />
                     </span>
                     <a href="#">Shelters</a>
                 </li>
                 <li class="flex items-center md:justify-end mr-12">
                     <span>
-                        <x-swg.hospital-swg/>
+                        <x-swg.hospital-swg />
                     </span>
                     <a href="#">Animal clinics</a>
                 </li>
                 <li class="flex items-center md:justify-end mr-12">
                     <span>
-                        <x-swg.dollar-swg/>
+                        <x-swg.dollar-swg />
                     </span>
                     <a href="#">Donations</a>
                 </li>
                 <li class="flex items-center md:justify-end mr-12">
                     <span>
-                        <x-swg.foundraisers-swg/>
+                        <x-swg.foundraisers-swg />
                     </span>
                     <a href="#">Fundraisers</a>
                 </li>
                 <li class="flex items-center md:justify-end mr-12">
                     <span>
-                        <x-swg.house-swg/>
+                        <x-swg.house-swg />
                     </span>
                     <a href="#"> Pet Boarding & Grooming</a>
                 </li>
                 <li class="flex items-center md:justify-end mr-12">
                     <span>
-                        <x-swg.english-swg/>
+                        <x-swg.english-swg />
                     </span>
                     <a href="#">Change Language</a>
                 </li>
