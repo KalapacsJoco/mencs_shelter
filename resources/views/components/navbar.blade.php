@@ -1,21 +1,29 @@
-<nav class="relative z-50" style="background-image: url('{{ asset('storage/images/paws.png') }}');">
-    <div class="fixed top-0 left-0 md:right-0 md:left-auto transition-all duration-300" x-data="{ open: false }"
+<nav class="relative z-50">
+    <div class="fixed top-0 left-0 md:right-0 md:left-auto transition-all duration-300 w-full" x-data="{ open: false }"
         :class="open ? 'w-screen h-screen p-4' : 'w-auto p-2'">
         <div class="hidden md:flex">
         </div>
 
         <div class="flex mx-5">
-            <span class="hidden md:flex items-center space-x-10 mr-10 hover:btnprimary-hover">
-                <a href="">Adoption</a>
-                <a href="">Login</a>
-                <select class="rounded-md bg-transparent">
-                    <option value="">Language</option>
-                    <option value="">English</option>
-                    <option value="">Romana</option>
-                    <option value="">Magyar</option>
-                </select>
+
+            <span class="hidden md:flex justify-between items-center w-full px-6">
+                <div>
+                    <a href="/">
+                        <img src="{{ asset('storage/images/logo.png') }}" alt="Logo" class="w-[101px] h-[25px]">
+                    </a>
+                </div>
+                <div class="flex items-center space-x-10 mr-10  w-auto">
+                    <a href="">Adoption</a>
+                    <a href="/login">Login</a>
+                    <select class="rounded-xl bg-transparent hover:bg-btnsecondary-hover">
+                        <option value="">Language</option>
+                        <option value="">English</option>
+                        <option value="">Romana</option>
+                        <option value="">Magyar</option>
+                    </select>
+                </div>
             </span>
-            <button class="flex justify-between items-center w-full text-lg font-semibold p-2 rounded"
+            <button class="flex  items-center text-lg font-semibold p-2 rounded"
                 x-on:click="open = !open">
                 <div class="flex items-center space-x-2">
                     <span x-show="!open">
@@ -37,139 +45,53 @@
         </div>
 
         <div x-show="open" x-transition>
-            <ul class="mt-4 space-y-4  bg-background-mobilemenu md:flex flex-col flex-end">
-                <li class="flex items-center space-x-2">
-                    <span><svg width="36" height="36" viewBox="0 0 36 36" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_43_251)">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M14.1 12.5C15.8949 12.5 17.35 11.0449 17.35 9.25C17.35 7.45507 15.8949 6 14.1 6C12.3051 6 10.85 7.45507 10.85 9.25C10.85 11.0449 12.3051 12.5 14.1 12.5ZM8.25 17.7C10.0449 17.7 11.5 16.2449 11.5 14.45C11.5 12.6551 10.0449 11.2 8.25 11.2C6.45507 11.2 5 12.6551 5 14.45C5 16.2449 6.45507 17.7 8.25 17.7ZM25.15 9.25C25.15 11.0449 23.6949 12.5 21.9 12.5C20.1051 12.5 18.65 11.0449 18.65 9.25C18.65 7.45507 20.1051 6 21.9 6C23.6949 6 25.15 7.45507 25.15 9.25ZM27.75 17.7C29.5449 17.7 31 16.2449 31 14.45C31 12.6551 29.5449 11.2 27.75 11.2C25.9551 11.2 24.5 12.6551 24.5 14.45C24.5 16.2449 25.9551 17.7 27.75 17.7ZM23.7768 20.0472C24.1534 20.491 24.536 20.942 24.942 21.418C25.0433 21.5193 25.146 21.6212 25.2494 21.7239C26.8851 23.3479 28.714 25.1637 28.335 27.658C27.958 28.971 27.009 30.297 25.306 30.674C24.8693 30.7578 23.992 30.6433 22.8579 30.4953C21.5277 30.3217 19.8443 30.102 18.104 30.102H17.87C16.1444 30.102 14.4746 30.3217 13.1498 30.4961C11.9994 30.6475 11.1091 30.7646 10.668 30.674C8.965 30.297 8.016 28.984 7.639 27.658C7.27237 25.1771 9.10009 23.3626 10.7353 21.7392C10.8395 21.6357 10.943 21.533 11.045 21.431C11.7783 20.581 12.4315 19.8112 13.1039 19.0187C13.4804 18.5749 13.863 18.124 14.269 17.648C14.88 16.946 15.634 16.244 16.544 15.932C16.687 15.88 16.83 15.841 16.973 15.815C17.311 15.75 17.662 15.75 18 15.75C18.338 15.75 18.689 15.75 19.014 15.802C19.157 15.828 19.3 15.867 19.443 15.919C20.353 16.231 21.12 16.933 21.718 17.635C22.4513 18.485 23.1045 19.2548 23.7768 20.0472Z"
-                                    fill="#2B2A29" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_43_251">
-                                    <rect width="36" height="36" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
+            <img src="" alt="">
+            <ul class="mt-4 space-y-4 bg-background-noopacity md:fixed w-screen h-screen ">
+                <li class="flex items-center  md:justify-end mr-12">
+                    <span>
+                        <x-swg.paws-swg/>
                     </span>
                     <a href="#">Adoption</a>
                 </li>
-                <li class="flex items-center space-x-2">
-                    <span><svg width="36" height="36" viewBox="0 0 36 36" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_43_253)">
-                                <path
-                                    d="M22.7956 5H13.2044C12.8289 5 12.4533 5.15889 12.1933 5.41889L5.41889 12.1933C5.15889 12.4533 5 12.8289 5 13.2044V22.7811C5 23.1711 5.15889 23.5322 5.41889 23.8067L12.1789 30.5667C12.4533 30.8411 12.8289 31 13.2044 31H22.7811C23.1711 31 23.5322 30.8411 23.8067 30.5811L30.5667 23.8211C30.8411 23.5467 30.9856 23.1856 30.9856 22.7956V13.2044C30.9856 12.8144 30.8267 12.4533 30.5667 12.1789L23.8067 5.41889C23.5467 5.15889 23.1711 5 22.7956 5ZM18 25.6556C16.96 25.6556 16.1222 24.8178 16.1222 23.7778C16.1222 22.7378 16.96 21.9 18 21.9C19.04 21.9 19.8778 22.7378 19.8778 23.7778C19.8778 24.8178 19.04 25.6556 18 25.6556ZM18 19.4444C17.2056 19.4444 16.5556 18.7944 16.5556 18V12.2222C16.5556 11.4278 17.2056 10.7778 18 10.7778C18.7944 10.7778 19.4444 11.4278 19.4444 12.2222V18C19.4444 18.7944 18.7944 19.4444 18 19.4444Z"
-                                    fill="#2B2A29" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_43_253">
-                                    <rect width="36" height="36" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
+                <li class="flex items-center md:justify-end mr-12">
+                    <span>
+                        <x-swg.exclamationmark-swg/>
                     </span>
                     <a href="#">Lost animals</a>
                 </li>
-                <li class="flex items-center space-x-2">
-                    <span><svg width="36" height="36" viewBox="0 0 36 36" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_43_244)">
-                                <path
-                                    d="M15.1708 28.121V21.0559H20.8229V28.121C20.8229 28.8982 21.4588 29.534 22.236 29.534H26.4751C27.2522 29.534 27.8881 28.8982 27.8881 28.121V18.2298H30.2902C30.9402 18.2298 31.2511 17.4244 30.7565 17.0005L18.9436 6.36032C18.4066 5.87989 17.5871 5.87989 17.0501 6.36032L5.23718 17.0005C4.75675 17.4244 5.05349 18.2298 5.70348 18.2298H8.10564V28.121C8.10564 28.8982 8.7415 29.534 9.51867 29.534H13.7578C14.5349 29.534 15.1708 28.8982 15.1708 28.121Z"
-                                    fill="#2B2A29" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_43_244">
-                                    <rect width="36" height="36" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
+                <li class="flex items-center md:justify-end mr-12">
+                    <span>
+                        <x-swg.house-swg/>
                     </span>
                     <a href="#">Shelters</a>
                 </li>
-                <li class="flex items-center space-x-2">
-                    <span><svg width="36" height="36" viewBox="0 0 36 36" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_43_246)">
-                                <path
-                                    d="M29.1429 10.5714H23.5714V6.85714C23.5714 5.83571 22.7357 5 21.7143 5H14.2857C13.2643 5 12.4286 5.83571 12.4286 6.85714V10.5714H6.85714C5.83571 10.5714 5 11.4071 5 12.4286V29.1429C5 30.1643 5.83571 31 6.85714 31H29.1429C30.1643 31 31 30.1643 31 29.1429V12.4286C31 11.4071 30.1643 10.5714 29.1429 10.5714ZM14.2857 6.85714H21.7143V10.5714H14.2857V6.85714ZM21.7143 21.7143H18.9286V24.5C18.9286 25.02 18.52 25.4286 18 25.4286C17.48 25.4286 17.0714 25.02 17.0714 24.5V21.7143H14.2857C13.7657 21.7143 13.3571 21.3057 13.3571 20.7857C13.3571 20.2657 13.7657 19.8571 14.2857 19.8571H17.0714V17.0714C17.0714 16.5514 17.48 16.1429 18 16.1429C18.52 16.1429 18.9286 16.5514 18.9286 17.0714V19.8571H21.7143C22.2343 19.8571 22.6429 20.2657 22.6429 20.7857C22.6429 21.3057 22.2343 21.7143 21.7143 21.7143Z"
-                                    fill="#2B2A29" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_43_246">
-                                    <rect width="36" height="36" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
+                <li class="flex items-center md:justify-end mr-12">
+                    <span>
+                        <x-swg.hospital-swg/>
                     </span>
                     <a href="#">Animal clinics</a>
                 </li>
-                <li class="flex items-center space-x-2">
-                    <span><svg width="36" height="36" viewBox="0 0 36 36" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_43_249)">
-                                <path
-                                    d="M18 5C10.824 5 5 10.824 5 18C5 25.176 10.824 31 18 31C25.176 31 31 25.176 31 18C31 10.824 25.176 5 18 5ZM19.144 25.488V25.956C19.144 26.58 18.637 27.1 18 27.1C17.376 27.1 16.856 26.593 16.856 25.956V25.41C16.037 25.215 14.347 24.617 13.359 22.68C13.06 22.108 13.346 21.393 13.944 21.146L14.035 21.107C14.568 20.886 15.166 21.107 15.439 21.614C15.855 22.407 16.674 23.395 18.195 23.395C19.404 23.395 20.769 22.771 20.769 21.302C20.769 20.054 19.859 19.404 17.805 18.663C16.375 18.156 13.45 17.324 13.45 14.36C13.45 14.23 13.463 11.24 16.856 10.512V10.044C16.856 9.407 17.376 8.9 18 8.9C18.624 8.9 19.144 9.407 19.144 10.044V10.525C20.535 10.772 21.419 11.513 21.952 12.215C22.394 12.787 22.16 13.619 21.484 13.905C21.016 14.1 20.47 13.944 20.158 13.541C19.794 13.047 19.144 12.54 18.078 12.54C17.168 12.54 15.725 13.021 15.725 14.347C15.725 15.582 16.843 16.05 19.157 16.817C22.277 17.896 23.07 19.482 23.07 21.302C23.07 24.721 19.82 25.371 19.144 25.488Z"
-                                    fill="#2B2A29" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_43_249">
-                                    <rect width="36" height="36" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
+                <li class="flex items-center md:justify-end mr-12">
+                    <span>
+                        <x-swg.dollar-swg/>
                     </span>
                     <a href="#">Donations</a>
                 </li>
-                <li class="flex items-center space-x-2">
-                    <span><svg width="36" height="36" viewBox="0 0 36 36" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_43_255)">
-                                <path
-                                    d="M7.29412 30.4804C8.56353 30.4804 9.58823 29.4557 9.58823 28.1863V19.0098C9.58823 17.7404 8.56353 16.7157 7.29412 16.7157C6.02471 16.7157 5 17.7404 5 19.0098V28.1863C5 29.4557 6.02471 30.4804 7.29412 30.4804Z"
-                                    fill="#2B2A29" />
-                                <path
-                                    d="M22.7106 18.0922C23.2918 18.6122 24.1788 18.6122 24.76 18.0922C26.2588 16.7464 27.6659 15.4769 28.7671 14.2687C30.1129 12.7852 31 11.3781 31 10.0017C31 8.88518 30.5565 7.87577 29.8376 7.15695C28.2623 5.58165 26.2282 5.93342 25.1882 6.40754C24.6223 6.66754 24.1176 7.04989 23.7353 7.50871C23.3376 7.04989 22.8329 6.66754 22.2823 6.40754C21.2423 5.91812 19.2082 5.58165 17.6329 7.15695C16.9141 7.89107 16.4706 8.88518 16.4706 10.0017C16.4706 11.3628 17.3576 12.7699 18.7035 14.2534C19.8047 15.4617 21.2118 16.7311 22.7106 18.0922Z"
-                                    fill="#2B2A29" />
-                                <path
-                                    d="M19.5294 24.3628L17.9541 23.8428C17.5412 23.7051 17.3118 23.2463 17.4647 22.8333C17.6176 22.4051 18.1071 22.191 18.52 22.3745L19.5294 22.8333H23.5365C24.2859 22.8333 24.8824 22.2369 24.8824 21.4875C24.8824 20.9216 24.5306 20.4169 23.9953 20.2181L14.5588 16.8533C14.2988 16.7616 14.0388 16.7157 13.7788 16.7157H11.8824V27.9722L20.34 30.2816C20.8141 30.4039 21.3188 30.3886 21.7624 30.2051L31 26.6569C31 25.3875 29.9753 24.3628 28.7059 24.3628H19.5294Z"
-                                    fill="#2B2A29" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_43_255">
-                                    <rect width="36" height="36" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
+                <li class="flex items-center md:justify-end mr-12">
+                    <span>
+                        <x-swg.foundraisers-swg/>
                     </span>
                     <a href="#">Fundraisers</a>
                 </li>
-                <li class="flex items-center space-x-2">
-                    <span><svg width="36" height="36" viewBox="0 0 36 36" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_43_244)">
-                                <path
-                                    d="M15.1708 28.121V21.0559H20.8229V28.121C20.8229 28.8982 21.4588 29.534 22.236 29.534H26.4751C27.2522 29.534 27.8881 28.8982 27.8881 28.121V18.2298H30.2902C30.9402 18.2298 31.2511 17.4244 30.7565 17.0005L18.9436 6.36032C18.4066 5.87989 17.5871 5.87989 17.0501 6.36032L5.23718 17.0005C4.75675 17.4244 5.05349 18.2298 5.70348 18.2298H8.10564V28.121C8.10564 28.8982 8.7415 29.534 9.51867 29.534H13.7578C14.5349 29.534 15.1708 28.8982 15.1708 28.121Z"
-                                    fill="#2B2A29" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_43_244">
-                                    <rect width="36" height="36" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
+                <li class="flex items-center md:justify-end mr-12">
+                    <span>
+                        <x-swg.house-swg/>
                     </span>
                     <a href="#"> Pet Boarding & Grooming</a>
                 </li>
-                <li class="flex items-center space-x-2">
-                    <span><svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M18 32C25.732 32 32 25.732 32 18C32 10.268 25.732 4 18 4C10.268 4 4 10.268 4 18C4 25.732 10.268 32 18 32Z"
-                                fill="url(#pattern0_1442_6441)" />
-                        </svg>
+                <li class="flex items-center md:justify-end mr-12">
+                    <span>
+                        <x-swg.english-swg/>
                     </span>
                     <a href="#">Change Language</a>
                 </li>

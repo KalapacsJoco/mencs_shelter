@@ -17,7 +17,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-comfortaa">
+<body class="font-comfortaa bg-background-base">
     <x-navbar/>
     <main>
         {{ $slot }}
