@@ -1,7 +1,7 @@
 <nav class="fixed z-50">
     <div class="fixed inset-0 md:right-0 md:left-auto transition-all duration-300 w-full" x-data="{ open: false }"
         :class="open ? 'w-screen h-screen' : 'w-auto'">
-        <!-- screen size menuitems-->
+
         <div class="fixed top-0 left-0 w-full flex justify-between z-50">
             <span class="hidden md:flex justify-between items-center w-full px-6">
                 <div>
@@ -14,9 +14,9 @@
                     <a href="/login">Login</a>
                     <select class="rounded-xl bg-transparent hover:bg-btnsecondary-hover">
                         <option value="">Language</option>
-                        <option value="">English</option>
-                        <option value="">Romana</option>
-                        <option value="">Magyar</option>
+                        <option value="en">English</option>
+                        <option value="ro">Romana</option>
+                        <option value="hu">Magyar</option>
                     </select>
                 </div>
             </span>
@@ -38,7 +38,6 @@
                 <x-swg.user-swg />
             </button>
         </div>
-        <!-- openable menuitem -->
 
         <div x-show="open" x-transition
             class="flex items-center w-screen h-screen bg-background-noopacity fixed md:justify-end -z-10">
