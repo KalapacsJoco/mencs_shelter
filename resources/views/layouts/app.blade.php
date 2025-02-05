@@ -15,6 +15,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body class="font-comfortaa bg-background-base">
@@ -25,6 +26,7 @@
     <footer>
 
     </footer>
+    @livewireScripts
 </body>
 
 </html>
