@@ -1,4 +1,4 @@
-<div class="relative w-2/3 mx-auto overflow-hidden ">
+<x-scrollable-container>
     <h2 class="font-bold text-2xl mt-5">Shelters</h2>
     <div x-ref="scrollContainer" x-on:scroll="scrollPos = $event.target.scrollLeft"
         class="flex space-x-4 overflow-x-auto scroll-smooth hide-scrollbar">
@@ -14,4 +14,4 @@
         </section>
         @endforeach
     </div>
-</div>
+</x-scrollable-container>
