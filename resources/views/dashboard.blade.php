@@ -22,8 +22,6 @@
 
         <div class="absolute inset-0 bg-background bg-opacity-60"></div>
 
-        <!-- This div shows the header`s main 3 text, including the <a> tags to different pages -->
-
         <div class="absolute bottom-48 left-48 max-w-lg text-left text-black">
             <h1 class="text-4xl font-bold" x-text="texts[activeIndex].title"></h1>
             <p class="mt-2 text-lg opacity-80" x-text="texts[activeIndex].subtitle"></p>
@@ -31,8 +29,6 @@
                 <x-primary-button x-text="texts[activeIndex].button"></x-primary-button>
             </a>
         </div>
-
-        <!-- The 3 dot in the bottom. The active one is black, rest is gray -->
 
         <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3 ">
             <template x-for="(link, index) in links" :key="index">

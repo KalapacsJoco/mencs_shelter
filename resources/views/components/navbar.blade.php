@@ -1,6 +1,5 @@
 <nav class="fixed z-50">
 
-    <!--Megoldani a navbart, mert igy nem jo -->
     <div x-data="{ open: false }">
         <div class="fixed top-0 left-0 w-full flex justify-between z-50">
             <span class="hidden md:flex justify-between items-center w-full px-6">

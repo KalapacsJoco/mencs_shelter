@@ -8,7 +8,7 @@ use Livewire\Component;
  * This class is responsible for the image showing logic in the shelter`s own page
  */
 
-class ShelterGallery extends Component
+class ImageGallery extends Component
 {
     public $images = [];
     public $selectedImage;
@@ -39,6 +39,6 @@ class ShelterGallery extends Component
 
     public function render()
     {
-        return view('livewire.shelter-gallery');
+        return view('livewire.image-gallery');
     }
 }

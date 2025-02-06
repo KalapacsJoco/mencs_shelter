@@ -3,7 +3,7 @@
             <h1 class="h1-style">{{$shelter->name}}</h1>
             <h3>{{$shelter->city}}</h3>
             <section class="md:flex gap-8 h-[60vh]">
-                <livewire:shelter-gallery :images="$shelter->images" class="" />
+                <livewire:image-gallery :images="$shelter->images" class="" />
                 <aside class="w-full md:w-1/3">
                     <section class="bg-background shadow-sm rounded-xl">
                         <h2 class="h1-style mx-2 border-b-2">{{$shelter->name}}</h2>
