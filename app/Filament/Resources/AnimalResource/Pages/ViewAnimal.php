@@ -4,11 +4,11 @@ namespace App\Filament\Resources\AnimalResource\Pages;
 
 use App\Filament\Resources\AnimalResource;
 use Filament\Actions\EditAction;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\ViewRecord;
-
 
 class ViewAnimal extends ViewRecord
 {
@@ -39,16 +39,7 @@ class ViewAnimal extends ViewRecord
                     ->listWithLineBreaks()
                     ->bulleted(),
                 Textentry::make('message'),
-                TextEntry::make('images')
-                    ->label('Images')
-                    ->html()
-                    ->formatStateUsing(
-                        fn($record) =>
-                        $record->getRelationValue('images')->pluck('path')->map(
-                            fn($url) =>
-                            "<img src='" . asset('storage/' . $url) . "' width='350' style='border-radius: 10px; margin: 5px;'>"
-                        )->implode(' ')
-                    ),
+                ImageEntry::make('images.path'),
 
                 Section::make('Shelter')
                     ->schema([
