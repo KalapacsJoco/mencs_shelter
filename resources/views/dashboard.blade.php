@@ -13,7 +13,7 @@
                 <x-secondary-button>Adoption</x-secondary-button>
             </a>
         </section>
-        <x-paws-image/>
+        <x-paws-image />
     </header>
 
     <div class="hidden md:flex flex-col items-center space-y-4 bg-cover bg-center bg-no-repeat min-h-screen relative transition-all duration-1000 ease-in-out"
@@ -41,7 +41,7 @@
             </template>
         </div>
     </div>
-    <div class="flex flex-col items-center" >
+    <div class="flex flex-col items-center">
         <livewire:Shelter />
     </div>
     <script>

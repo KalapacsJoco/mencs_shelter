@@ -10,7 +10,7 @@
 
     <div x-ref="scrollContainer"
          x-on:scroll="scrollPos = $event.target.scrollLeft"
-         class="flex overflow-x-auto scroll-smooth hide-scrollbar">
+         class=" overflow-x-auto scroll-smooth hide-scrollbar">
         {{ $slot }} 
     </div>
 

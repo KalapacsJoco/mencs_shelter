@@ -25,3 +25,7 @@
 .secondary-button-pressed:active {
     @apply bg-btnsecondary-pressed;
 }
+
+.h1-style {
+    @apply text-2xl font-bold;
+}

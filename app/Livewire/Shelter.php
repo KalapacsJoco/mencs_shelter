@@ -24,15 +24,6 @@ class Shelter extends Component
     }
 
     /**
-     * This function redirects to the selected shelter`s page
-     */
-
-    public function goToShelter($id)
-    {
-        return redirect()->to('shelter/' . $id);
-    }
-
-    /**
      * This function renders the shelter resources for the blade file
      */
 
