@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Shelter as ShelterModell; 
+use App\Models\Shelter as ShelterModell;
 
 class Shelter extends Component
 {
@@ -11,19 +11,40 @@ class Shelter extends Component
     public $limit = 3;
     public $totalShelters;
 
-    public function mount()
+    /**
+     * This method counts the Shelter instanses and loads the first $limit number of shelters
+     */
+
+    public function mount(): void
     {
-        $this->totalShelters = ShelterModell::count(); 
+        $this->totalShelters = ShelterModell::count();
         $this->loadMore();
     }
 
-    public function loadMore()
+    /**
+     * This method redirects to the shelter`s own site through the router
+     */
+
+    public function goToShelter($shelterId)
+    {
+        return redirect()->route('shelters.show', $shelterId);
+    }
+
+    /**
+     * This method loads more $limit number of shelters from the database
+     */
+
+    public function loadMore(): void
     {
         if (count($this->shelters) < $this->totalShelters) {
             $this->shelters = ShelterModell::with('images')->take($this->limit)->get();
             $this->limit += 3;
         }
     }
+
+    /**
+     * This method renders the Shelter cards to the dashboard site
+     */
 
     public function render()
     {
