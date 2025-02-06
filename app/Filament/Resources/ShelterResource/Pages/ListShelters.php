@@ -41,13 +41,15 @@ class ListShelters extends ListRecords
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
-                    /**
-                     * This method deletes all the resource related data from the database and storage
-                     * @param $record contains all the resource data
-                     */
-                    ->after(function ($record) {
-                        ProcessFiles::deleteFile($record);
-                    }),
+                /**
+                 * This method uses the ProcessFiles trait to delete all the resource related data from the database and storage
+                 * @param $record contains all the resource data
+                 * @return void
+                 */
+
+                 ->after(function () {
+                    $this->deleteFile();
+                }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([]),

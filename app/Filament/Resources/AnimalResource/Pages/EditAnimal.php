@@ -55,7 +55,7 @@ class EditAnimal extends EditRecord
                  */
 
                 ->after(function () {
-                    ProcessFiles::deleteFile($this->record);
+                    $this->deleteFile();
                 }),
 
         ];

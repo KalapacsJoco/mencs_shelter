@@ -53,8 +53,8 @@ class EditVet extends EditRecord
                  * @return void
                  */
 
-                ->after(function () {
-                    ProcessFiles::deleteFile($this->record);
+                 ->after(function () {
+                    $this->deleteFile();
                 }),
         ];
     }

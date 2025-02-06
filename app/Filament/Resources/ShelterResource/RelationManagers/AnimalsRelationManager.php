@@ -50,7 +50,8 @@ class AnimalsRelationManager extends RelationManager
 
             ->actions([
                 Tables\Actions\EditAction::make()->url(fn($record) => EditAnimal::getUrl(['record' => $record])),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make()

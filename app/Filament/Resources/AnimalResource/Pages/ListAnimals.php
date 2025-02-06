@@ -46,8 +46,8 @@ class ListAnimals extends ListRecords
                      * This function uses a treat witch deletes all the images from database an storage
                      */
 
-                    ->after(function (iterable $records): void {
-                        ProcessFiles::bulkDeleteFiles($records);
+                    ->after(function (): void {
+                        $this->bulkDeleteFiles();
                     }),
             ]);
     }
