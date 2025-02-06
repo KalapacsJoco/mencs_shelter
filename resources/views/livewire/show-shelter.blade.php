@@ -1,10 +1,11 @@
-<x-app-layout>
+<div>
+    <x-app-layout>
         <article class="w-auto mt-48">
             <h1 class="h1-style">{{$shelter->name}}</h1>
             <h3>{{$shelter->city}}</h3>
             <section class="md:flex gap-8 h-[60vh]">
-                <livewire:image-gallery :images="$shelter->images" class="" />
-                <aside class="w-full md:w-1/3">
+                <x-image-gallery :images="$shelter->images" />
+                    <aside class="w-full md:w-1/3">
                     <section class="bg-background shadow-sm rounded-xl">
                         <h2 class="h1-style mx-2 border-b-2">{{$shelter->name}}</h2>
                         <div class="flex items-center space-x-2">
@@ -44,4 +45,5 @@
                 </aside>
             </section>
         </article>
-</x-app-layout>
+    </x-app-layout>
+</div>

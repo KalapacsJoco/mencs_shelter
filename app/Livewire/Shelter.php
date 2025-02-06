@@ -24,6 +24,15 @@ class Shelter extends Component
     }
 
     /**
+     * This function redirects to the route with the selected shelter instance
+     */
+
+    public function goToShelter($shelterId)
+    {
+        return redirect()->route('shelters.show', $shelterId);
+    }
+
+    /**
      * This function renders the shelter resources for the blade file
      */
 

@@ -1,15 +1,15 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ShelterController;
-use App\Models\Shelter;
+use App\Livewire\ShowShelter;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
 });
 
-Route::get('/shelter/{shelter}', [ShelterController::class, 'show'])->name('shelters.show');
+Route::get('/shelters/{shelter}', ShowShelter::class)->name('shelters.show');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -17,4 +17,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
