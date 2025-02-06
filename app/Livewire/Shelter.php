@@ -2,42 +2,31 @@
 
 namespace App\Livewire;
 
-use App\Models\Shelter as ModelsShelter;
 use Livewire\Component;
+use App\Models\Shelter as ShelterModell; 
 
 class Shelter extends Component
 {
-
-    /**
-     * This variable stores the shelter instances
-     */
-
-    public $shelters;
-
-    /**
-     * This function mounts all the shelters from the database, making it reachable for the component
-     */
+    public $shelters = [];
+    public $limit = 3;
+    public $totalShelters;
 
     public function mount()
     {
-        $this->shelters = ModelsShelter::with('images')->get();
+        $this->totalShelters = ShelterModell::count(); 
+        $this->loadMore();
     }
 
-    /**
-     * This function redirects to the route with the selected shelter instance
-     */
-
-    public function goToShelter($shelterId)
+    public function loadMore()
     {
-        return redirect()->route('shelters.show', $shelterId);
+        if (count($this->shelters) < $this->totalShelters) {
+            $this->shelters = ShelterModell::with('images')->take($this->limit)->get();
+            $this->limit += 3;
+        }
     }
-
-    /**
-     * This function renders the shelter resources for the blade file
-     */
 
     public function render()
     {
-        return view('livewire.shelter', []);
+        return view('livewire.shelter');
     }
 }
