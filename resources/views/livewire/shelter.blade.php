@@ -3,7 +3,6 @@
     <div x-ref="scrollContainer" x-on:scroll="scrollPos = $event.target.scrollLeft"
         class="flex space-x-4 overflow-x-auto scroll-smooth hide-scrollbar">
         @foreach ($shelters as $shelter)
-        <a href="{{ route('shelters.show', $shelter->id) }}">
             <section class="flex flex-col items-center justify-center drop-shadow-md border p-5 m-2 rounded-xl"
                 wire:key="shelter-{{ $shelter->id }}" wire:click='goToShelter({{ $shelter->id }})'>
                 <img src="{{ asset('storage/' . $shelter->images->first()->path) }}" alt="Shelter image"
@@ -13,7 +12,6 @@
                     {{ \Illuminate\Support\Str::limit($shelter->description, 100, '...') }}
                 </article>
             </section>
-        </a>
         @endforeach
 
         @if (count($shelters) < $totalShelters) <div class="flex justify-center items-center p-4">

@@ -15,7 +15,6 @@
     </div>
 
     <button x-on:click="$refs.scrollContainer.scrollBy({ left: 500, behavior: 'smooth' })"
-            x-show="scrollPos < maxScroll"
             class="hidden md:block absolute -right-20 top-1/2 transform -translate-y-1/2 bg-btnsecondary p-2 rounded-full shadow-lg">
         <x-swg.chevronright-swg />
     </button>
