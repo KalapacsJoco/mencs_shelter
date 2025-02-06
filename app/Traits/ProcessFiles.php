@@ -40,9 +40,9 @@ trait ProcessFiles
      * This functiom deletes a single file using the DeleteAction 
      */
 
-    public static function deleteFile($record)
+    public function deleteFile()
     {
-        $images= $record['images'];
+        $images= $this->record['images'];
         foreach ($images as $image) {
             if ($image->path && Storage::disk('public')->exists($image->path)) {
                 Storage::disk('public')->delete($image->path);
@@ -59,9 +59,9 @@ trait ProcessFiles
      * @param iterable $records
      * @return void
      */
-    public static function bulkDeleteFiles(iterable $records): void
+    public function bulkDeleteFiles(): void
     {
-        foreach ($records as $record) {
+        foreach ($this->records as $record) {
             foreach ($record->images as $image) {
                 if ($image->path && Storage::disk('public')->exists($image->path)) {
                     Storage::disk('public')->delete($image->path);

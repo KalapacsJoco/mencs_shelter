@@ -38,13 +38,15 @@ class EditShelter extends EditRecord
     {
         return [
             Actions\DeleteAction::make()
-            /**
-             * This method deletes all the resource related data from the database and storage
-             * @param $record contains all the resource data
-             */
-            ->after(function () {
-                ProcessFiles::deleteFile($this->record);
-            }),
+                /**
+                 * This method uses the ProcessFiles trait to delete all the resource related data from the database and storage
+                 * @param $record contains all the resource data
+                 * @return void
+                 */
+
+                 ->after(function () {
+                    $this->deleteFile();
+                }),
         ];
     }
 

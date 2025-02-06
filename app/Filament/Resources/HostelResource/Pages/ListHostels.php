@@ -54,8 +54,12 @@ class ListHostels extends ListRecords
             ])
             ->bulkActions([
                 DeleteBulkAction::make()
-                    ->after(function (iterable $records): void {
-                        ProcessFiles::bulkDeleteFiles($records);
+                     /**
+                     * This function uses a treat witch deletes all the images from database an storage
+                     */
+
+                     ->after(function (): void {
+                        $this->bulkDeleteFiles();
                     }),
             ]);
     }
