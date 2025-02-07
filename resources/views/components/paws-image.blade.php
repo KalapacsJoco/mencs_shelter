@@ -1,5 +1,5 @@
 <img 
     src="{{ asset('storage/images/paws.png') }}" 
     alt="Paws Image" 
-    {{ $attributes->merge(['class' => '']) }} 
+    {{ $attributes->merge(['class' => 'hidden']) }} 
 />

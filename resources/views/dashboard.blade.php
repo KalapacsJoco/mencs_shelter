@@ -7,23 +7,20 @@
 
         <section class="mt-4 bg-background-noopacity text-lg rounded-3xl p-4  w-full ">
             <h3 class="text-md">
-                Adopt a pet, don’t buy one, and join our cause!
+                Adopt a pet, don't buy one, and join our cause!
             </h3>
             <a href="#" class="">
                 <x-secondary-button>Adoption</x-secondary-button>
             </a>
         </section>
-        <x-paws-image/>
+        <x-paws-image />
     </header>
 
-    <div
-        class="hidden md:flex flex-col items-center space-y-4 bg-cover bg-center bg-no-repeat w-full min-h-screen relative transition-all duration-1000 ease-in-out"
+    <div class="hidden md:flex flex-col items-center space-y-4 bg-cover bg-center bg-no-repeat min-h-screen relative transition-all duration-1000 ease-in-out"
         x-data="headerComponent" x-init="setInterval(() => changeBackground(), 5000)"
         :style="'background-image: url(' + backgrounds[activeIndex] + ');'">
 
         <div class="absolute inset-0 bg-background bg-opacity-60"></div>
-
-        <!-- This div shows the header`s main 3 text, including the <a> tags to different pages -->
 
         <div class="absolute bottom-48 left-48 max-w-lg text-left text-black">
             <h1 class="text-4xl font-bold" x-text="texts[activeIndex].title"></h1>
@@ -33,17 +30,16 @@
             </a>
         </div>
 
-        <!-- The 3 dot in the bottom. The active one is black, rest is gray -->
-
         <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3 ">
             <template x-for="(link, index) in links" :key="index">
                 <div :class="activeIndex === index ? 'bg-black' : 'bg-gray-400'"
                     class="w-3 h-3 rounded-full transition-all duration-500"></div>
             </template>
         </div>
-
     </div>
-
+    <div class="flex flex-col items-center">
+        <livewire:Shelter />
+    </div>
     <script>
         function headerComponent() {
             return {

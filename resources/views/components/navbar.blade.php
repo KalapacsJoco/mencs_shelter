@@ -1,7 +1,6 @@
 <nav class="fixed z-50">
-    <div class="fixed inset-0 md:right-0 md:left-auto transition-all duration-300 w-full" x-data="{ open: false }"
-        :class="open ? 'w-screen h-screen' : 'w-auto'">
 
+    <div x-data="{ open: false }">
         <div class="fixed top-0 left-0 w-full flex justify-between z-50">
             <span class="hidden md:flex justify-between items-center w-full px-6">
                 <div>
@@ -28,10 +27,6 @@
                     <span x-show="open" x-transition>Menu</span>
                 </div>
                 <span x-show="open" x-transition>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 4L14 10L6 16" stroke="#2B2A29" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
                 </span>
             </button>
             <button class="md:hidden">
@@ -39,51 +34,54 @@
             </button>
         </div>
 
-        <div x-show="open" x-transition
-            class="flex items-center w-screen h-screen bg-background-noopacity fixed md:justify-end -z-10">
-            <ul class="">
-                <li class="flex items-center  my-2 md:justify-end mr-12 ">
-                    <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
-                        <x-swg.paws-swg /> <span>Adoption</span>
-                    </button>
-                </li>
-                <li class="flex items-center my-2 md:justify-end mr-12 ">
-                    <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
-                        <x-swg.exclamationmark-swg /><span>Lost animals</span>
-                    </button>
-                </li>
-                <li class="flex items-center my-2 md:justify-end mr-12 ">
-                    <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
-                        <x-swg.house-swg /><span>Shelters</span>
-                    </button>
-                </li>
-                <li class="flex items-center my-2 md:justify-end mr-12 ">
-                    <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
-                        <x-swg.hospital-swg /><span>Animal clinics</span>
-                    </button>
-                </li>
-                <li class="flex items-center my-2 md:justify-end mr-12 ">
-                    <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
-                        <x-swg.dollar-swg /><span>Donations</span>
-                    </button>
-                </li>
-                <li class="flex items-center my-2 md:justify-end mr-12 ">
-                    <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
-                        <x-swg.foundraisers-swg /><span>Fundraisers</span>
-                    </button>
-                </li>
-                <li class="flex items-center my-2 md:justify-end mr-12 ">
-                    <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
-                        <x-swg.house-swg /><span>Pet Boarding & Grooming</span>
-                    </button>
-                </li>
-                <li class="flex items-center my-2 md:justify-end mr-12 ">
-                    <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
-                        <x-swg.english-swg /><span>Change Language</span>
-                    </button>
-                </li>
-            </ul>
-            <x-paws-image class="fixed right-0 scale-x-[-1] -rotate-30 md:scale-x-100 md:left-0 ml-8" />
+        <div class=" fixed inset-0 md:right-0 md:left-auto transition-all duration-300 w-full"
+            :class="open ? 'w-screen h-screen' : 'hidden'">
+            <div x-show="open" x-transition
+                class="flex items-center w-screen h-screen bg-background-noopacity fixed md:justify-end -z-10">
+                <ul class="">
+                    <li class="flex items-center  my-2 md:justify-end mr-12 ">
+                        <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
+                            <x-swg.paws-swg /> <span>Adoption</span>
+                        </button>
+                    </li>
+                    <li class="flex items-center my-2 md:justify-end mr-12 ">
+                        <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
+                            <x-swg.exclamationmark-swg /><span>Lost animals</span>
+                        </button>
+                    </li>
+                    <li class="flex items-center my-2 md:justify-end mr-12 ">
+                        <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
+                            <x-swg.house-swg /><span>Shelters</span>
+                        </button>
+                    </li>
+                    <li class="flex items-center my-2 md:justify-end mr-12 ">
+                        <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
+                            <x-swg.hospital-swg /><span>Animal clinics</span>
+                        </button>
+                    </li>
+                    <li class="flex items-center my-2 md:justify-end mr-12 ">
+                        <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
+                            <x-swg.dollar-swg /><span>Donations</span>
+                        </button>
+                    </li>
+                    <li class="flex items-center my-2 md:justify-end mr-12 ">
+                        <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
+                            <x-swg.foundraisers-swg /><span>Fundraisers</span>
+                        </button>
+                    </li>
+                    <li class="flex items-center my-2 md:justify-end mr-12 ">
+                        <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
+                            <x-swg.house-swg /><span>Pet Boarding & Grooming</span>
+                        </button>
+                    </li>
+                    <li class="flex items-center my-2 md:justify-end mr-12 ">
+                        <button x-on:click="window.location.href = '#'" class="flex items-center mx-2">
+                            <x-swg.english-swg /><span>Change Language</span>
+                        </button>
+                    </li>
+                </ul>
+                <x-paws-image class="fixed right-0 scale-x-[-1] -rotate-30 md:scale-x-100 md:left-0 ml-8" />
+            </div>
         </div>
     </div>
 </nav>
