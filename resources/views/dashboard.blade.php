@@ -38,6 +38,7 @@
         </div>
     </div>
     <div class="flex flex-col items-center">
+        <livewire:Animal />
         <livewire:Shelter />
     </div>
     <script>
