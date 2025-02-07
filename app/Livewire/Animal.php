@@ -9,20 +9,24 @@ use App\Models\Species;
 class Animal extends Component
 {
     public $animals = [];
-    public $limit = 10;
+    public $limit = 3;
     public $totalAnimals;
     public $selectedSpecies = '';
     public $species;
+    public $colors;
+    public $shelterId = null;
 
     /**
      * This method counts the Animal instanses and loads the first $limit number of Animals
      */
 
-    public function mount(): void
+    public function mount($shelterId = null): void
     {
         $this->totalAnimals = AnimalModell::count();
         $this->loadMore();
         $this->species = Species::pluck('name');
+        $this->colors = AnimalModell::pluck('color');
+        $this->shelterId = $shelterId;
     }
 
     /**
@@ -38,13 +42,19 @@ class Animal extends Component
      * This method loads more $limit number of Animals from the database
      */
 
-    public function loadMore(): void
-    {
-        if (count($this->animals) < $this->totalAnimals) {
-            $this->animals = AnimalModell::with('images')->take($this->limit)->get();
-            $this->limit += 3;
-        }
-    }
+     public function loadMore(): void
+     {
+         $query = AnimalModell::with('images');
+              if ($this->shelterId) {
+             $query->where('shelter_id', $this->shelterId);
+             $this->totalAnimals = AnimalModell::where('shelter_id', $this->shelterId)->count();
+         } else {
+             $this->totalAnimals = AnimalModell::count();
+         }
+         $this->animals = $query->take($this->limit)->get();
+         $this->limit += 3;
+     }
+     
 
     /**
      * This method filters the animals selected by the species
@@ -66,9 +76,8 @@ class Animal extends Component
 
     public function render()
     {
-
-    return view('livewire.animal', [
-
-    ]);
+        return view('livewire.animal', [
+            'animals' => $this->animals
+        ]);
     }
 }

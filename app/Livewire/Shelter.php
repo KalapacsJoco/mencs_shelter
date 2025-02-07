@@ -48,6 +48,6 @@ class Shelter extends Component
 
     public function render()
     {
-        return view('livewire.shelter');
+        return view('livewire.shelter',);
     }
 }
