@@ -12,14 +12,14 @@
     </div>
 
     <div x-ref="scrollContainer" x-on:scroll="scrollPos = $event.target.scrollLeft"
-        class="md:grid grid-rows-2 grid-cols-4 gap-4 overflow-x-auto scroll-smooth hide-scrollbar">
+        class="grid md:grid-rows-2 grid-flow-col gap-4 overflow-x-auto scroll-smooth hide-scrollbar">
         @foreach ($animals as $animal)
         <section 
-        class="relative flex flex-col items-center justify-center  rounded-xl pb-10"
+        class="relative flex flex-col items-center justify-center  rounded-xl pb-10 w-60 h-60"
         wire:key="animal-{{ $animal->id }}" 
         wire:click='goToAnimal({{ $animal->id }})'>
             <img src="{{ asset('storage/' . $animal->images->first()?->path) }}" alt="animal image"
-                class="w-full rounded-2xl">
+                class="w-60 h-60 rounded-2xl">
             <article class="absolute bottom-2 bg-background-noopacity w-4/5 rounded-2xl p-2">
                 <div class="flex justify-between">
                     <h3>{{ $animal->name }}</h3>

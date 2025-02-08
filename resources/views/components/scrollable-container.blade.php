@@ -7,8 +7,7 @@
         <x-swg.chevronleft-swg />
     </button>
 
-    <div x-ref="scrollContainer" x-on:scroll="scrollPos = $event.target.scrollLeft"
-        class=" overflow-x-auto scroll-smooth hide-scrollbar">
+    <div x-ref="scrollContainer" x-on:scroll="scrollPos = $event.target.scrollLeft">
         {{ $slot }}
     </div>
 
