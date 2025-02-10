@@ -27,7 +27,7 @@ class Animal extends Component
     public $allAnimals=[];
 
     /**
-     * This method counts the Animal instanses and loads the first $limit number of animals
+     * This method loads 'limit' number os animals from the dashboard and its properties that is necessary for the filtering
      */
 
     public function mount($animals, $shelterId = null): void
@@ -44,7 +44,7 @@ class Animal extends Component
     }
 
     /**
-     * This method loads more $limit number of animals from the database
+     * This method loads more $limit number of animals if more needed
      */
     
      public function loadMore(): void
@@ -103,11 +103,13 @@ class Animal extends Component
         }
 
         if (!empty($this->color)) {
-            $query->whereIn('color', $this->color);
+            $query->where('color', $this->color);
         }
 
         if (!empty($this->vaccine)) {
-            $query->whereIn('vaccine', $this->vaccine);
+            $query->whereHas('vaccines', function ($q) {
+                $q->where('name', $this->vaccines);
+            });
         }
 
         if (!empty($this->city)) {

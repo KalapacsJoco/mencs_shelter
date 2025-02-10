@@ -12,7 +12,6 @@ class ShowShelter extends Component
     use WithPagination;
 
     public Shelter $shelter;
-    public $animals;
 
     /**
      * This function recieves the shelter instance witch has to be rendered to the show page
@@ -21,7 +20,15 @@ class ShowShelter extends Component
     public function mount(Shelter $shelter)
     {
         $this->shelter = $shelter;
-        $this->animals = $shelter->animals;
+    }
+
+    /**
+     * This function will redirect the user to the animal show page
+     */
+
+    public function redirectToAnimal($id)
+    {
+        return redirect()->route('animal.show', $id);
     }
 
     /**
@@ -31,7 +38,7 @@ class ShowShelter extends Component
     public function render()
     {
         return view('livewire.show-shelter',[
-            'animals' => $this->shelter->animals()->paginate(3),
+            'animals' => $this->shelter->animals()->paginate(6),
         ]);
     }
 }

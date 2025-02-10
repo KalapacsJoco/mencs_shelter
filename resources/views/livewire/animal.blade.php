@@ -14,7 +14,7 @@
                 <span>Detailed search</span>
                 <x-swg.filter-swg />
             </button>
-            <section class="bg-background" x-show="open == true">
+            <section class="bg-background-noopacity" x-show="open == true">
                 <div>
                     <div x-on:click="sexOptions = true">Sex
                         <div x-show="sexOptions == true">
@@ -26,11 +26,11 @@
                     </div>
                     <div x-on:click="ageOptions = true">Age
                         <div x-show="ageOptions == true">
-                            <input name="age" type="radio" value="<1">
+                            <input name="age" type="radio" value="<1" wire:model="age">
                             <label for="age">Less than 1</label><br>
-                            <input name="age" type="radio" value="1-5">
+                            <input name="age" type="radio" value="1-5" wire:model="age">>
                             <label for="age">1-5</label><br>
-                            <input name="age" type="radio" value=">5">
+                            <input name="age" type="radio" value=">5" wire:model="age">
                             <label for="age">Greater than 5</label>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                             @foreach ($colors as $color)
                             <div class="flex items-center">
                                 <label for="color">{{ $color }}</label>
-                                <input type="checkbox" name="color[]" value="{{ $color }}">
+                                <input type="checkbox" name="color[]" value="{{ $color }}" wire:model="color">
                             </div>
                             @endforeach
                         </div>
@@ -49,7 +49,7 @@
                             @foreach ($vaccines as $vaccine)
                             <div class="flex items-center">
                                 <label for="vaccine">{{ $vaccine }}</label>
-                                <input type="checkbox" name="vaccine[]" value="{{ $vaccine }}">
+                                <input type="checkbox" name="vaccine[]" value="{{ $vaccine }}" wire:model="vaccine">
                             </div>
                             @endforeach
                         </div>
@@ -60,7 +60,7 @@
                         @foreach ($cityes as $city)
                         <div class="flex items-center">
                             <label for="city">{{ $city }}</label>
-                            <input type="checkbox" name="city[]" value="{{ $city }}">
+                            <input type="checkbox" name="city[]" value="{{ $city }}" wire:model="city">
                         </div>
                         @endforeach
                     </div>

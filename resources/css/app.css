@@ -29,3 +29,7 @@
 .h1-style {
     @apply text-2xl font-bold;
 }
+
+.h2-style {
+    @apply text-xl font-bold;
+}
