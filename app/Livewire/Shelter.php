@@ -10,13 +10,15 @@ class Shelter extends Component
     public $shelters = [];
     public $limit = 3;
     public $totalShelters;
+    public $animals;
 
     /**
      * This method counts the Shelter instanses and loads the first $limit number of shelters
      */
 
-    public function mount(): void
+    public function mount($animals): void
     {
+        $this->animals = $animals;
         $this->totalShelters = ShelterModell::count();
         $this->loadMore();
     }
@@ -27,6 +29,7 @@ class Shelter extends Component
 
     public function goToShelter($shelterId)
     {
+
         return redirect()->route('shelters.show', $shelterId);
     }
 

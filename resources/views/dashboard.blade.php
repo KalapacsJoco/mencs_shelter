@@ -38,9 +38,8 @@
         </div>
     </div>
     <div class="flex flex-col items-center">
-        <livewire:Animal />
-        <livewire:Shelter/>
-
+        <livewire:Animal :animals="$animals" />
+        <livewire:Shelter :animals="$animals" />
     </div>
     <script>
         function headerComponent() {

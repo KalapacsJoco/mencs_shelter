@@ -2,10 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\ShowShelter;
+use App\Models\Animal;
+use App\Models\Shelter;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('dashboard');
+    $animals = Animal::with(['images'])->get();
+    $shelters = Shelter::with(['images'])->get();
+    return view('dashboard', compact('animals'));
 });
 
 Route::get('/shelters/{shelter}', ShowShelter::class)->name('shelters.show');
