@@ -4,12 +4,10 @@ use App\Http\Controllers\ProfileController;
 use App\Livewire\ShowAnimal;
 use App\Livewire\ShowShelter;
 use App\Models\Animal;
-use App\Models\Shelter;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $animals = Animal::with(['images'])->get();
-    $shelters = Shelter::with(['images'])->get();
+    $animals = Animal::with(['images'])->limit(10)->get();
     return view('dashboard', compact('animals'));
 });
 

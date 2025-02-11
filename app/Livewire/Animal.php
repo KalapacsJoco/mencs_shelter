@@ -23,38 +23,42 @@ class Animal extends Component
     public $vaccine = [];
     public $city = [];
     public $shelterId = null;
-    public $animals=[];
-    public $allAnimals=[];
+    public $animals = [];
 
     /**
-     * This method loads 'limit' number os animals from the dashboard and its properties that is necessary for the filtering
+     * Mount queries the database to get the initial 5 animals and supporting data.
      */
 
-    public function mount($animals, $shelterId = null): void
+    public function mount($shelterId = null): void
     {
+        $this->limit = 5;
         $this->shelterId = $shelterId;
-        $this->animals = collect($this->allAnimals)->take($this->limit);
-        $this->allAnimals= $animals;
         $this->totalAnimals = AnimalModell::count();
-        $this->loadMore();
-        $this->species = Species::pluck('name');
-        $this->colors = AnimalModell::pluck('color')->unique();
-        $this->vaccines = Vaccine::pluck('name');
-        $this->cityes = Shelter::pluck('city')->unique();
+        $this->species   = Species::pluck('name');
+        $this->colors    = AnimalModell::pluck('color')->unique();
+        $this->vaccines  = Vaccine::pluck('name');
+        $this->cityes    = Shelter::pluck('city')->unique();
     }
 
     /**
-     * This method loads more $limit number of animals if more needed
+     * The dashboard loads the first x number of animals when the page is loaded. If the user wants to see more, this
+     * method is responsible for it.
      */
-    
-     public function loadMore(): void
+
+    public function loadMore(): void
     {
-        $this->limit += 12;
-        $this->animals = collect($this->allAnimals)->take($this->limit);
+        $this->limit += 5;
+        $query = AnimalModell::with(['images', 'shelter', 'species']);
+
+        if ($this->shelterId !== null) {
+            $query->where('shelter_id', $this->shelterId);
+        }
+        $this->animals = $query->limit($this->limit)->get();
     }
 
     /**
-     * This method filters the animals by the selected species
+     * This method is called when the user selects a species from the dropdown.
+     * It queries the database for animals of the selected species.
      */
 
     public function updatedSelectedSpecies($name)
@@ -66,12 +70,11 @@ class Animal extends Component
         if ($this->shelterId !== null) {
             $query->where('shelter_id', $this->shelterId);
         }
-
-        $this->animals = $query->take($this->limit)->get();
+        $this->animals = $query->limit($this->limit)->get();
     }
 
     /**
-     * This method filters the animals by the selected criteria
+     * This method is responsible for the detailed filtering of animals.
      */
 
     public function filterAnimals(): void
@@ -108,7 +111,7 @@ class Animal extends Component
 
         if (!empty($this->vaccine)) {
             $query->whereHas('vaccines', function ($q) {
-                $q->where('name', $this->vaccines);
+                $q->whereIn('name', $this->vaccine);
             });
         }
 
@@ -118,21 +121,45 @@ class Animal extends Component
             });
         }
 
-        $this->animals = $query->limit($this->limit)->get();
+        $this->animals = $query->get();
     }
 
     /**
-     * This method renders the Animal component
+     * This function deletes the selected filters in he detailed filters section.
+     */
+
+    public function deleteFilters()
+    {
+        $this->selectedSpecies = '';
+        $this->sex = null;
+        $this->age = null;
+        $this->color = [];
+        $this->vaccine = [];
+        $this->city = [];
+        $this->loadMore();
+    }
+
+    /**
+     * This method redirects to the animal`s own site through the router if the user clicks on the animal card.
+     */
+
+    public function redirectToAnimal($id)
+    {
+        return redirect()->route('animal.show', $id);
+    }
+
+    /**
+     * This method renders the animal cards to the dashboard site.
      */
 
     public function render()
     {
         return view('livewire.animal', [
-            'animals' => $this->animals,
-            'colors' => $this->colors,
+            'animals'  => $this->animals,
+            'colors'   => $this->colors,
             'vaccines' => $this->vaccines,
-            'cityes' => $this->cityes,
-            'species' => $this->species,
+            'cityes'   => $this->cityes,
+            'species'  => $this->species,
         ]);
     }
 }

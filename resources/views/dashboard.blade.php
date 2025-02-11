@@ -9,8 +9,8 @@
             <h3 class="text-md">
                 Adopt a pet, don't buy one, and join our cause!
             </h3>
-            <a href="#" class="">
-                <x-secondary-button>Adoption</x-secondary-button>
+            <a :href="links[activeIndex].url">
+                <x-primary-button x-text="texts[activeIndex].button"></x-primary-button>
             </a>
         </section>
         <x-paws-image />
@@ -52,7 +52,7 @@
 
                 ],
                 links: [
-                    { text: 'Adopt now', url: '#' },
+                    { text: 'Adopt now', url: '/pets' },
                     { text: 'Find Vets', url: '#' },
                     { text: 'Hostels', url: '#' }
                 ],
