@@ -8,11 +8,19 @@
         </x-select-field>
         <div x-data="{ open: false, sexOptions: false, ageOptions: false, colorOptions: false, vaccineOptions: false, cityOptions: false }"
             x-on:click.outside="open = false">
-            <button x-on:click="open = !open" class="primary-button-default flex">
+            <button x-on:click="open = !open" class="primary-button-default flex h-[50px]">
                 <span>Detailed search</span>
                 <x-swg.filter-swg />
             </button>
-            <section class="bg-background-noopacity" x-show="open == true">
+            <section class="absolute bg-background-noopacity z-50" 
+            x-show="open == true"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 transform -translate-y-4"
+            x-transition:enter-end="opacity-100 transform translate-y-0"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 transform translate-y-0"
+            x-transition:leave-end="opacity-0 transform -translate-y-4"
+            >
                 <div>
                     <div class="bg-white rounded-2xl m-1">
                         <div x-on:click="sexOptions = !sexOptions" class="flex justify-between items-center cursor-pointer">

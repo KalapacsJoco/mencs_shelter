@@ -75,7 +75,7 @@ class ShowShelter extends Component
          }
  
          return view('livewire.show-shelter', [
-             'animals' => $query->paginate(6), 
+             'animals' => $query->paginate(8), 
          ]);
      }
 }

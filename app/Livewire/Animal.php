@@ -25,6 +25,7 @@ class Animal extends Component
     public $city = [];
     public $shelterId = null;
     public $animals = [];
+    public $filteredAnimalIds = [];
 
     /**
      * Mount queries the database to get the initial 5 animals and supporting data.
@@ -32,7 +33,7 @@ class Animal extends Component
 
     public function mount($shelterId = null): void
     {
-        $this->limit = 5;
+        $this->limit = 10;
         $this->shelterId = $shelterId;
         $this->totalAnimals = AnimalModell::count();
         $this->species   = Species::pluck('name');
@@ -48,11 +49,11 @@ class Animal extends Component
 
     public function loadMore(): void
     {
-        $this->limit += 5;
-        $query = AnimalModell::with(['images', 'shelter', 'species']);
+        $this->limit += 10;
+        $query = AnimalModell::with(['images', 'shelter', 'species'])->limit($this->limit);
 
-        if ($this->shelterId !== null) {
-            $query->where('shelter_id', $this->shelterId);
+        if (!empty($this->filteredAnimalIds)) {
+            $query->whereIn('id', $this->filteredAnimalIds);
         }
         $this->animals = $query->limit($this->limit)->get();
     }
@@ -61,15 +62,17 @@ class Animal extends Component
      * This method redirects to the animal`s own site through the router if the user clicks on the animal card.
      */
 
-     #[On('animalFilterUpdated')]
-     public function filteredAnimals($animalIds)
-     {
-         $this->animals = AnimalModell::with(['images', 'shelter', 'species'])
-                                      ->whereIn('id', $animalIds)
-                                      ->get();
-     }
+    #[On('animalFilterUpdated')]
+    public function filteredAnimals($animalIds)
+    {
+        $this->filteredAnimalIds = $animalIds;
+        $this->animals = AnimalModell::with(['images', 'shelter', 'species'])
+            ->whereIn('id', $animalIds)
+            ->limit($this->limit)
+            ->get();
+    }
 
-         /**
+    /**
      * This method deletes the filters and returns all the shelter`s animals
      */
 
@@ -77,8 +80,8 @@ class Animal extends Component
     public function deleteFilters()
     {
         $this->animals = AnimalModell::with(['images', 'shelter', 'species'])
-                                     ->limit($this->limit)
-                                     ->get();
+            ->limit($this->limit)
+            ->get();
     }
 
     /**
@@ -93,7 +96,7 @@ class Animal extends Component
     /**
      * This method renders the animal cards to the dashboard site.
      */
-    
+
     public function render()
     {
         return view('livewire.animal', [
