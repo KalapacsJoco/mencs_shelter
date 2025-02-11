@@ -63,7 +63,7 @@ class Animal extends Component
      */
 
     #[On('animalFilterUpdated')]
-    public function filteredAnimals($animalIds)
+    public function filteredAnimals($animalIds): void
     {
         $this->filteredAnimalIds = $animalIds;
         $this->animals = AnimalModell::with(['images', 'shelter', 'species'])
@@ -77,7 +77,7 @@ class Animal extends Component
      */
 
     #[On('filtersDeleted')]
-    public function deleteFilters()
+    public function deleteFilters(): void
     {
         $this->animals = AnimalModell::with(['images', 'shelter', 'species'])
             ->limit($this->limit)
