@@ -5,7 +5,7 @@
             <h3>{{$shelter->city}}</h3>
             <section class="md:flex gap-4 h-1/2">
                 <x-image-gallery :images="$shelter->images" class="w-full flex flex-col md:flex-row gap-2" />
-                    <div class="h-[500px] w-1/2 flex flex-col">
+                    <div class="w-full md:w-1/2 h-[500px]  flex flex-col">
                         <section class="bg-background shadow-sm rounded-xl">
                         <h2 class="h1-style mx-2 border-b-2">{{ $shelter->name }}</h2>
                         <div class="flex items-center space-x-2">

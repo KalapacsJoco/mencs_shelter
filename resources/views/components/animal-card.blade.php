@@ -1,4 +1,3 @@
-<!-- filepath: /c:/Users/kalap/Herd/mencsprjoect/resources/views/components/animal-card.blade.php -->
 @props(['animal'])
 
 <section class="relative flex flex-col items-center justify-center pb-10 w-full h-full aspect-square"

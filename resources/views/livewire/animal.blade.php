@@ -1,4 +1,3 @@
-<!-- filepath: /c:/Users/kalap/Herd/mencsprjoect/resources/views/livewire/animal.blade.php -->
 <x-scrollable-container>
     <h2 class="font-bold text-2xl mt-5">Animals</h2>
     <x-animal-searchbar :species="$species" :colors="$colors" :vaccines="$vaccines" :cityes="$cityes" />
