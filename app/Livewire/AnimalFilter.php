@@ -43,6 +43,9 @@ class AnimalFilter extends Component
             ->whereHas('species', function ($q) use ($name) {
                 $q->where('name', $name);
             });
+        if ($name=='all') {
+            $query = Animal::with('images');
+        }
         if ($this->shelterId !== null) {
             $query->where('shelter_id', $this->shelterId);
         }
