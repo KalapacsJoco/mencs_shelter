@@ -137,8 +137,12 @@
                     @endif
                 </div>
                 <div class="flex justify-end gap-4">
-                    <x-secondary-button wire:click="filterAnimals">Search</x-secondary-button>
-                    <x-danger-button wire:click="deleteFilters">Delete filters</x-danger-button>
+                    <x-secondary-button 
+                    x-on:click="open = false"
+                    wire:click="filterAnimals">Search</x-secondary-button>
+                    <x-danger-button
+                    x-on:click="open = false" 
+                    wire:click="deleteFilters">Delete filters</x-danger-button>
                 </div>
             </section>
         </div>
