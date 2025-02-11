@@ -28,7 +28,7 @@ class Animal extends Component
     public $filteredAnimalIds = [];
 
     /**
-     * Mount queries the database to get the initial 5 animals and supporting data.
+     * Mount queries the database to get the initial x animals and supporting data.
      */
 
     public function mount($shelterId = null): void
