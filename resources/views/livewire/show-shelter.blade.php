@@ -46,7 +46,7 @@
             </section>
         </article>
         <div class="w-4/5 mx-auto mt-8">
-            <livewire:AnimalFilter :species="$species" :colors="$colors" :vaccines="$vaccines" :cityes="$cityes" />
+            <livewire:AnimalFilter/>
         </div>
         <section class="grid grid-cols-1 md:grid-cols-4 gap-8 w-4/5 mx-auto">
             @foreach ($animals as $animal)

@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="flex flex-col items-center">
-        <livewire:Animal :animals="$animals" />
+        <livewire:AnimalCard :animals="$animals" />
         <livewire:Shelter :animals="$animals" />
     </div>
     <script>

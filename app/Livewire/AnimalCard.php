@@ -4,42 +4,50 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Animal as AnimalModell;
-use App\Models\Shelter;
-use App\Models\Species;
-use App\Models\Vaccine;
+use Illuminate\Support\Collection;
+use Illuminate\View\View;
 use Livewire\Attributes\On;
 
-class Animal extends Component
+/**
+ * This class is responsible for the animal cards on the dashboard site. The first 10 animals are loaded when the page is set up.
+ */
+
+class AnimalCard extends Component
 {
-    public $limit;
-    public $totalAnimals;
-    public $selectedSpecies = '';
-    public $species;
-    public $age;
-    public $sex;
-    public $colors;
-    public $vaccines;
-    public $cityes;
-    public $color = [];
-    public $vaccine = [];
-    public $city = [];
-    public $shelterId = null;
-    public $animals = [];
-    public $filteredAnimalIds = [];
+    /**
+     * The number of animals to be loaded initially and incrementally.
+     */
+    public int $limit;
+
+    /**
+     * The total number of animals in the database.
+     */
+    public int $totalAnimals;
+
+    /**
+     * The ID of the selected shelter. If null, all shelters are displayed.
+     */
+    public ?int $shelterId;
+
+    /**
+     * The list of animals currently displayed.
+     */
+    public Collection $animals;
+
+    /**
+     * The IDs of animals after filtering.
+     */
+    public array $filteredAnimalIds;
 
     /**
      * Mount queries the database to get the initial x animals and supporting data.
      */
 
-    public function mount($shelterId = null): void
+    public function mount(?int $shelterId = null): void
     {
         $this->limit = 10;
         $this->shelterId = $shelterId;
         $this->totalAnimals = AnimalModell::count();
-        $this->species   = Species::pluck('name');
-        $this->colors    = AnimalModell::pluck('color')->unique();
-        $this->vaccines  = Vaccine::pluck('name');
-        $this->cityes    = Shelter::pluck('city')->unique();
     }
 
     /**
@@ -88,7 +96,7 @@ class Animal extends Component
      * This method redirects to the animal`s own site through the router if the user clicks on the animal card.
      */
 
-    public function redirectToAnimal($id)
+    public function redirectToAnimal($id): \Illuminate\Http\RedirectResponse
     {
         return redirect()->route('animal.show', $id);
     }
@@ -97,14 +105,10 @@ class Animal extends Component
      * This method renders the animal cards to the dashboard site.
      */
 
-    public function render()
+    public function render(): View
     {
-        return view('livewire.animal', [
+        return view('livewire.animal-card', [
             'animals'  => $this->animals,
-            'colors'   => $this->colors,
-            'vaccines' => $this->vaccines,
-            'cityes'   => $this->cityes,
-            'species'  => $this->species,
         ]);
     }
 }
