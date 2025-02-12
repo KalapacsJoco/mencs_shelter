@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .primary-button-default {
-    @apply bg-btnprimary text-black px-4 py-2 rounded-md font-semibold transition;
+    @apply bg-btnprimary text-black px-4 py-2 rounded-2xl font-semibold transition;
 }
 
 .primary-button-hover:hover {
@@ -28,4 +28,8 @@
 
 .h1-style {
     @apply text-2xl font-bold;
+}
+
+.h2-style {
+    @apply text-xl font-bold;
 }
