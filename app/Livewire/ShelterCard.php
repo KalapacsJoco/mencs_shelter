@@ -4,19 +4,41 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Shelter as ShelterModell;
+use Illuminate\Support\Collection;
 
-class Shelter extends Component
+/**
+ * This class is responsible for the Shelter cards on the dashboard site.
+ */
+
+class ShelterCard extends Component
 {
+
+    /**
+     * The loaded shelters from the database. 
+     * If the user clicks on the load more button, the limit will be increased by $limit.
+     */
     public $shelters = [];
-    public $limit = 3;
-    public $totalShelters;
-    public $animals;
+
+    /**
+     * The limit of the shelters to be loaded.
+     */
+    public int $limit = 3;
+
+    /**
+     * The total number of shelters in the database.
+     */
+    public int $totalShelters;
+
+    /**
+     * The animals, loaded from the parent component (dashboard).
+     */
+    public Collection $animals;
 
     /**
      * This method counts the Shelter instanses and loads the first $limit number of shelters
      */
 
-    public function mount($animals): void
+    public function mount(Collection $animals): void
     {
         $this->animals = $animals;
         $this->totalShelters = ShelterModell::count();
@@ -27,7 +49,7 @@ class Shelter extends Component
      * This method redirects to the shelter`s own site through the router
      */
 
-    public function goToShelter($shelterId)
+    public function goToShelter(int $shelterId)
     {
 
         return redirect()->route('shelters.show', $shelterId);
@@ -51,6 +73,6 @@ class Shelter extends Component
 
     public function render()
     {
-        return view('livewire.shelter',);
+        return view('livewire.shelter-card');
     }
 }

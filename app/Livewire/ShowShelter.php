@@ -5,38 +5,37 @@ namespace App\Livewire;
 use App\Models\Animal;
 use Livewire\Component;
 use App\Models\Shelter;
-use App\Models\Species;
-use App\Models\Vaccine;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 
+/**
+ * This class is responsible for rendering the shelter instance to the show page with pagination.
+ */
+
 class ShowShelter extends Component
 {
-
+    /**
+     * This trait allows to paginate the data.
+     */
     use WithPagination;
 
+    /**
+     * This variable will store the shelter instance.
+     */
     public Shelter $shelter;
-    public $animalIds = [];
-    public $species = Species::class;
-    public $colors = Animal::class;
-    public $vaccines = Vaccine::class;
-    public $cityes = Shelter::class;
 
     /**
-     * This function recieves the shelter instance witch has to be rendered to the show page
+     * This variable will store the animals id that match the criteria.
      */
-
-    public function mount(Shelter $shelter)
-    {
-        $this->shelter = $shelter;
-
-    }
+    public $animalIds = [];
 
     /**
      * This function will redirect the user to the animal show page
      */
 
-    public function redirectToAnimal($id)
+    public function redirectToAnimal(int $id): RedirectResponse
     {
         return redirect()->route('animal.show', $id);
     }
@@ -46,7 +45,7 @@ class ShowShelter extends Component
      */
 
     #[On('animalFilterUpdated')]
-    public function filteredAnimals($animalIds)
+    public function filteredAnimals(int $animalIds): void
     {
         $this->animalIds = $animalIds;
     }
@@ -54,9 +53,8 @@ class ShowShelter extends Component
     /**
      * This method deletes the filters and returns all the shelter`s animals
      */
-
     #[On('filtersDeleted')]
-    public function deleteFilters()
+    public function deleteFilters(): void
     {
         $this->animalIds = [];
     }
@@ -65,17 +63,17 @@ class ShowShelter extends Component
      * This function renders the shelter instance to the show page with pagination
      */
 
-     public function render()
-     {
-         $query = Animal::with(['images', 'shelter', 'species'])
-             ->where('shelter_id', $this->shelter->id);
- 
-         if (!empty($this->animalIds)) {
-             $query->whereIn('id', $this->animalIds);
-         }
- 
-         return view('livewire.show-shelter', [
-             'animals' => $query->paginate(8), 
-         ]);
-     }
+    public function render(): View
+    {
+        $query = Animal::with(['images', 'shelter', 'species'])
+            ->where('shelter_id', $this->shelter->id);
+
+        if (!empty($this->animalIds)) {
+            $query->whereIn('id', $this->animalIds);
+        }
+
+        return view('livewire.show-shelter', [
+            'animals' => $query->paginate(8),
+        ]);
+    }
 }

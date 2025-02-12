@@ -1,9 +1,9 @@
 <div>
     <div class="md:flex justify-between align-center my-4 w-full">
         <x-select-field name="species" id="species" wire:model.live="selectedSpecies">
-            <option value="">Select a species</option>
-            @foreach ($species as $name)
-            <option value="{{ lcfirst($name) }}">{{ $name }}</option>
+            <option value="all">All species</option>
+            @foreach ($species as $id => $name)
+                <option value="{{ $id }}">{{ $name }}</option>
             @endforeach
         </x-select-field>
         <div x-data="{ open: false, sexOptions: false, ageOptions: false, colorOptions: false, vaccineOptions: false, cityOptions: false }"
