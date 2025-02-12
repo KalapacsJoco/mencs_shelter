@@ -35,7 +35,7 @@ class ShowShelter extends Component
      * This function will redirect the user to the animal show page
      */
 
-    public function redirectToAnimal($id): RedirectResponse
+    public function redirectToAnimal(int $id): RedirectResponse
     {
         return redirect()->route('animal.show', $id);
     }
@@ -45,7 +45,7 @@ class ShowShelter extends Component
      */
 
     #[On('animalFilterUpdated')]
-    public function filteredAnimals($animalIds): void
+    public function filteredAnimals(int $animalIds): void
     {
         $this->animalIds = $animalIds;
     }

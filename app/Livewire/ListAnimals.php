@@ -32,7 +32,7 @@ class ListAnimals extends Component
      * This method will redirect the user to the animal show page
      */
 
-    public function redirectToAnimal($id): \Illuminate\Http\RedirectResponse
+    public function redirectToAnimal(int $id): \Illuminate\Http\RedirectResponse
     {
         return redirect()->route('animal.show', $id);
     }

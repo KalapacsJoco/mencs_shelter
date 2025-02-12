@@ -96,7 +96,7 @@ class AnimalCard extends Component
      * This method redirects to the animal`s own site through the router if the user clicks on the animal card.
      */
 
-    public function redirectToAnimal($id): \Illuminate\Http\RedirectResponse
+    public function redirectToAnimal(int $id): \Illuminate\Http\RedirectResponse
     {
         return redirect()->route('animal.show', $id);
     }

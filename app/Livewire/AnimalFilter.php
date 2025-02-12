@@ -107,7 +107,7 @@ class AnimalFilter extends Component
      * It queries the database for animals of the selected species.
      */
 
-    public function updatedSelectedSpecies($id): void
+    public function updatedSelectedSpecies(int $id): void
     {
         $query = Animal::with('images')
             ->whereHas('species', function ($q) use ($id) {
