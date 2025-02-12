@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
  * This class is responsible for the Shelter cards on the dashboard site.
  */
 
-class Shelter extends Component
+class ShelterCard extends Component
 {
 
     /**
@@ -73,6 +73,6 @@ class Shelter extends Component
 
     public function render()
     {
-        return view('livewire.shelter');
+        return view('livewire.shelter-card');
     }
 }
