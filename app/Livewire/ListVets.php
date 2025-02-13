@@ -8,7 +8,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 /**
- * This class is used to list all the vets from the database.
+ * This class is used to list all the vets to their own page.
  */
 
 class ListVets extends Component

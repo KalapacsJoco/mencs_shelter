@@ -8,7 +8,7 @@ use Illuminate\View\View;
 use Livewire\Component;
 
 /**
- * This class is used to render the vet card component.
+ * This class is used to render the vet card component to the dashboard.
  */
 
 class VetCards extends Component

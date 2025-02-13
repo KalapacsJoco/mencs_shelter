@@ -9,18 +9,18 @@
             class="size-60 p-4 rounded-2xl">
         <div>
             @foreach ($vet->services as $service)
-            <li class="w-full">{{$service->name}}</li>
+                <li class="w-full">{{$service->name}}</li>
             @endforeach
         </div>
         <h3 class="w-full text-center my-2 font-bold">Schedule:</h3>
         <div>
             @foreach ($vet->schedules as $schedule)
-            <div class="flex justify-between">
-                <li>{{ ucfirst(substr($schedule->day_of_week, 0, 3)) }}: <span
-                        class="ml-4">{{substr($schedule->start_time, 0, -3)}} - {{substr($schedule->end_time, 0,
-                        -3)}}</span>
-                </li>
-            </div>
+                <div class="flex justify-between">
+                    <li>{{ ucfirst(substr($schedule->day_of_week, 0, 3)) }}: <span
+                            class="ml-4">{{substr($schedule->start_time, 0, -3)}} - {{substr($schedule->end_time, 0,
+                            -3)}}</span>
+                    </li>
+                </div>
             @endforeach
         </div>
         <h3 class="w-full text-center my-2 font-bold">Contact</h3>
