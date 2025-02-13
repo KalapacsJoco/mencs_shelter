@@ -11,7 +11,7 @@ use Livewire\Component;
  * This class is used to render the vet card component.
  */
 
-class VetCard extends Component
+class VetCards extends Component
 {
 
     /**
@@ -30,11 +30,20 @@ class VetCard extends Component
     }
 
     /**
+     * This function redirects to the list of vets.
+     */
+
+    public function listVets()
+    {
+        return redirect()->route('vets.list');
+    }
+
+    /**
      * This method is used to render the cards on the dashboard.
      */
 
     public function render(): View
     {
-        return view('livewire.vet-card');
+        return view('livewire.vet-cards');
     }
 }

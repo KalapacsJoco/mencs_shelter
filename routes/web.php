@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\ListAnimals;
+use App\Livewire\ListVets;
 use App\Livewire\ShowAnimal;
 use App\Livewire\ShowShelter;
 use App\Models\Animal;
@@ -15,6 +16,7 @@ Route::get('/', function () {
 Route::get('/shelters/{shelter}', ShowShelter::class)->name('shelters.show');
 Route::get('/animals/{animal}', ShowAnimal::class)->name('animal.show');
 Route::get('/animals', ListAnimals::class);
+Route::get('/vets', ListVets::class)->name('vets.list');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
