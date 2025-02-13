@@ -42,13 +42,12 @@ class AnimalFactory extends Factory
      * This method will generate the pictures after the factory has created the random animals
      */
 
-    public function configure()
-    {
-        return $this->afterCreating(function (Animal $animal) {
-            Image::factory(rand(1, 3))->create([
-                'imageable_id' => $animal->id,
-                'imageable_type' => Animal::class,
-            ]);
-        });
-    }
+     public function configure()
+     {
+         return $this->afterCreating(function (Animal $animal) {
+             \App\Models\Image::factory(rand(1, 3))
+                 ->for($animal, 'imageable')
+                 ->create();
+         });
+     }
 }
