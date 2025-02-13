@@ -6,7 +6,7 @@
         <div class="flex gap-4 overflow-x-auto md:grid md:grid-cols-2 md:grid-rows-2">
             @foreach ($vets as $vet)
                 <div class="flex-shrink-0 w-full md:w-auto">
-                    <x-vet-hostel-card :vet="$vet" />
+                    <x-vet-hostel-card :entity="$vet" />
                 </div>
             @endforeach
         </div>
