@@ -10,7 +10,17 @@
                 </div>
                 <div class="flex items-center space-x-10 mr-10  w-auto">
                     <a href="">Adoption</a>
+                    @guest
                     <a href="/login">Login</a>
+                    @endguest
+                    @auth
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit">
+                            Logout
+                        </button>
+                    </form>
+                    @endauth
                     <select class="rounded-xl bg-transparent hover:bg-btnsecondary-hover">
                         <option value="">Language</option>
                         <option value="en">English</option>
