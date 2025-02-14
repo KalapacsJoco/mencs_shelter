@@ -4,7 +4,6 @@
             Hello, animal lover,
             <h4 class="text-lg text-gray-600 font-medium">We're glad to have you here!</h4>
         </h2>
-
         <section class="mt-4 bg-background-noopacity text-lg rounded-3xl p-4  w-full ">
             <h3 class="text-md">
                 Adopt a pet, don't buy one, and join our cause!
@@ -15,7 +14,6 @@
         </section>
         <x-paws-image />
     </header>
-
     <div class="hidden md:flex flex-col items-center space-y-4 bg-cover bg-center bg-no-repeat min-h-screen relative transition-all duration-1000 ease-in-out"
         x-data="headerComponent" x-init="setInterval(() => changeBackground(), 5000)"
         :style="'background-image: url(' + backgrounds[activeIndex] + ');'">
@@ -29,7 +27,6 @@
                 <x-primary-button x-text="texts[activeIndex].button"></x-primary-button>
             </a>
         </div>
-
         <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3 ">
             <template x-for="(link, index) in links" :key="index">
                 <div :class="activeIndex === index ? 'bg-black' : 'bg-gray-400'"
@@ -40,6 +37,8 @@
     <div class="flex flex-col items-center">
         <livewire:AnimalCard :animals="$animals" />
         <livewire:ShelterCard :animals="$animals" />
+        <livewire:VetCards/>
+        <livewire:HostelCards/>
     </div>
     <script>
         function headerComponent() {
