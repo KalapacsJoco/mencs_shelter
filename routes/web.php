@@ -14,11 +14,20 @@ Route::get('/', function () {
     return view('dashboard', compact('animals'));
 });
 
+Route::get('/lang/{lang}', function ($lang) {
+    app()->setLocale($lang);
+    session()->put('locale', $lang);
+    dd(session('locale'));
+    // dd($lang);
+    return redirect()->back();
+});
+
+
 Route::get('/shelters/{shelter}', ShowShelter::class)->name('shelters.show');
 Route::get('/animals/{animal}', ShowAnimal::class)->name('animal.show');
 Route::get('/animals', ListAnimals::class);
 Route::get('/vets', ListVets::class)->name('vets.list');
-Route::get('/vets', ListHostels::class)->name('hostels.list');
+Route::get('/hostels', ListHostels::class)->name('hostels.list');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

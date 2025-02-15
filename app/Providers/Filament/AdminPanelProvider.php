@@ -7,6 +7,7 @@ use App\Filament\Resources\HostelResource;
 use App\Filament\Resources\ShelterResource;
 use App\Filament\Resources\VetResource;
 use Filament\Panel;
+use Minic\FilamentStarterKit\Domains\Locale\Filament\Resources\LocaleResource;
 use Minic\FilamentStarterKit\Providers\Filament\AdminPanelProvider as MinicAdminPanelProvider;
 
 class AdminPanelProvider extends MinicAdminPanelProvider
@@ -31,6 +32,8 @@ class AdminPanelProvider extends MinicAdminPanelProvider
             AnimalResource::class,
             VetResource::class,
             HostelResource::class,
+            LocaleResource::class,
+            
 		// ...
         ];
     }

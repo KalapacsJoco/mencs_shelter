@@ -9,14 +9,14 @@
                     </a>
                 </div>
                 <div class="flex items-center space-x-10 mr-10  w-auto">
-                    <a href="">Adoption</a>
+                    <a href="">{{ __('navbar.adopt') }}</a>
                     <a href="/login">Login</a>
-                    <select class="rounded-xl bg-transparent hover:bg-btnsecondary-hover">
-                        <option value="">Language</option>
-                        <option value="en">English</option>
-                        <option value="ro">Romana</option>
-                        <option value="hu">Magyar</option>
-                    </select>
+                    <form method="GET" action="" id="">
+                        <select name="lang" >
+                            <option value="en" >English</option>
+                            <option value="hu" >Magyar</option>
+                        </select>
+                    </form>
                 </div>
             </span>
             <button class="flex  items-center text-lg font-semibold p-2 rounded" x-on:click="open = !open">
