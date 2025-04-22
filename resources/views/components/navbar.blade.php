@@ -11,12 +11,7 @@
                 <div class="flex items-center space-x-10 mr-10  w-auto">
                     <a href="">{{ __('navbar.adopt') }}</a>
                     <a href="/login">Login</a>
-                    <form method="GET" action="" id="">
-                        <select name="lang" >
-                            <option value="en" >English</option>
-                            <option value="hu" >Magyar</option>
-                        </select>
-                    </form>
+                    <livewire:LanguageSelector/>
                 </div>
             </span>
             <button class="flex  items-center text-lg font-semibold p-2 rounded" x-on:click="open = !open">
